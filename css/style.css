@@ -3,10 +3,34 @@
    Curiosity. Expression. Experience.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 
-:root, [data-theme="dark"]{
-  /* Color: warm-black premium base + curiosity→expression→experience gradient */
+:root, [data-theme="light"]{
+  /* Beige base + emerald green accent */
+  --bg:            #f5f0e8;
+  --bg-soft:       #ede7d9;
+  --surface:       #faf7f2;
+  --surface-2:     #f0ebe1;
+  --border:        rgba(20,16,10,0.12);
+  --border-soft:   rgba(20,16,10,0.07);
+  --hover-tint:    rgba(20,16,10,.045);
+  --header-scrim:  rgba(245,240,232,.88);
+
+  --text:          #18151f;
+  --text-dim:      #514c5c;
+  --text-faint:    #8b8695;
+
+  --violet:        #059669;
+  --violet-soft:   rgba(5,150,105,0.65);
+  --coral:         #10b981;
+  --gold:          #065f46;
+  --teal:          #34d399;
+
+  color-scheme: light;
+}
+
+[data-theme="dark"]{
+  /* Dark base + emerald green accent */
   --bg:            #0a0a0e;
   --bg-soft:       #0f0f16;
   --surface:       #16161f;
@@ -20,43 +44,19 @@
   --text-dim:      #b3aebd;
   --text-faint:    #7a7686;
 
-  --violet:        #8b7cff;
-  --violet-soft:   #a99bffb3;
-  --coral:         #ff7a59;
-  --gold:          #ffc55c;
-  --teal:          #4adede;
+  --violet:        #10b981;
+  --violet-soft:   rgba(16,185,129,0.65);
+  --coral:         #34d399;
+  --gold:          #6ee7b7;
+  --teal:          #34d399;
 
   color-scheme: dark;
 }
 
-[data-theme="light"]{
-  /* Same brand hues, deepened for AA contrast on light surfaces */
-  --bg:            #faf8f4;
-  --bg-soft:       #f1eee7;
-  --surface:       #ffffff;
-  --surface-2:     #f6f3ec;
-  --border:        rgba(20,16,10,0.12);
-  --border-soft:   rgba(20,16,10,0.07);
-  --hover-tint:    rgba(20,16,10,.045);
-  --header-scrim:  rgba(250,248,244,.82);
-
-  --text:          #18151f;
-  --text-dim:      #514c5c;
-  --text-faint:    #8b8695;
-
-  --violet:        #6c4ff0;
-  --violet-soft:   #7c5ff0;
-  --coral:         #d6532b;
-  --gold:          #a6710a;
-  --teal:          #0e8686;
-
-  color-scheme: light;
-}
-
 :root{
-  --grad-primary:  linear-gradient(120deg, var(--violet) 0%, var(--coral) 100%);
-  --grad-soft:     linear-gradient(120deg, rgba(139,124,255,.16) 0%, rgba(255,122,89,.16) 100%);
-  --grad-line:     linear-gradient(90deg, var(--violet), var(--coral));
+  --grad-primary:  linear-gradient(120deg, #059669 0%, #10b981 100%);
+  --grad-soft:     linear-gradient(120deg, rgba(5,150,105,.14) 0%, rgba(16,185,129,.14) 100%);
+  --grad-line:     linear-gradient(90deg, #059669, #10b981);
 
   --radius-s:      10px;
   --radius-m:      18px;
@@ -78,7 +78,7 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size:16px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
@@ -88,7 +88,7 @@ body{
 img,svg{ max-width:100%; display:block; }
 
 h1,h2,h3,h4{
-  font-family:'Fraunces', Georgia, serif;
+  font-family:'Manrope', sans-serif;
   font-weight:600;
   line-height:1.1;
   letter-spacing:-0.01em;
@@ -113,8 +113,8 @@ button{ font-family:inherit; cursor:pointer; }
   pointer-events:none;
   z-index:0;
   background:
-    radial-gradient(600px 400px at 15% 0%, rgba(139,124,255,.16), transparent 60%),
-    radial-gradient(700px 500px at 90% 20%, rgba(255,122,89,.13), transparent 60%);
+    radial-gradient(600px 400px at 15% 0%, rgba(5,150,105,.16), transparent 60%),
+    radial-gradient(700px 500px at 90% 20%, rgba(16,185,129,.13), transparent 60%);
 }
 
 /* ---------- layout ---------- */
@@ -185,7 +185,7 @@ button{ font-family:inherit; cursor:pointer; }
 .lede{ font-size:clamp(17px, 1.6vw, 20px); color:var(--text-dim); max-width:62ch; }
 
 .key-message{
-  font-family:'Fraunces', serif;
+  font-family:'Manrope', sans-serif;
   font-size:clamp(20px, 2.2vw, 27px);
   font-weight:500;
   color:var(--text);
@@ -214,14 +214,14 @@ button{ font-family:inherit; cursor:pointer; }
   background:var(--grad-primary);
   color:#0a0a0e;
 }
-.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 16px 40px -12px rgba(255,122,89,.5); }
+.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 16px 40px -12px rgba(5,150,105,.5); }
 
 .btn-ghost{
   background:transparent;
   border-color:var(--border);
   color:var(--text);
 }
-.btn-ghost:hover{ border-color:var(--violet-soft); background:rgba(139,124,255,.08); transform:translateY(-2px); }
+.btn-ghost:hover{ border-color:var(--violet-soft); background:rgba(5,150,105,.08); transform:translateY(-2px); }
 
 .btn-sm{ padding:9px 18px; font-size:13px; white-space:nowrap; }
 
@@ -262,7 +262,7 @@ button{ font-family:inherit; cursor:pointer; }
   display:flex;
   align-items:center;
   gap:8px;
-  font-family:'Fraunces', serif;
+  font-family:'Manrope', sans-serif;
   font-weight:600;
   font-size:19px;
   letter-spacing:-.01em;
@@ -386,7 +386,7 @@ button{ font-family:inherit; cursor:pointer; }
 }
 .mobile-panel.open{ display:block; }
 .mobile-group{ border-bottom:1px solid var(--border-soft); padding:16px 0; }
-.mobile-group > summary{ font-family:'Fraunces',serif; font-size:19px; list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
+.mobile-group > summary{ font-family:'Manrope',sans-serif; font-size:19px; list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
 .mobile-group > summary::-webkit-details-marker{ display:none; }
 .mobile-group ul{ margin-top:14px; display:grid; gap:12px; }
 .mobile-group ul a{ color:var(--text-dim); font-size:15px; }
@@ -461,14 +461,14 @@ button{ font-family:inherit; cursor:pointer; }
   border:1px dashed var(--border);
   animation:spin 60s linear infinite;
 }
-.identity-loop .ring-2{ inset:44px; border-color:rgba(139,124,255,.18); animation-duration:44s; animation-direction:reverse; }
+.identity-loop .ring-2{ inset:44px; border-color:rgba(5,150,105,.18); animation-duration:44s; animation-direction:reverse; }
 .identity-loop .core{
   position:absolute; inset:32%;
   border-radius:50%;
   background:radial-gradient(circle at 32% 28%, #232233, #0d0d13 70%);
   border:1px solid var(--border);
   display:flex; align-items:center; justify-content:center;
-  box-shadow:0 0 80px -10px rgba(139,124,255,.35);
+  box-shadow:0 0 80px -10px rgba(5,150,105,.35);
 }
 .identity-loop .core-face{ width:38%; height:38%; opacity:.9; }
 .identity-loop .node{
@@ -516,10 +516,10 @@ button{ font-family:inherit; cursor:pointer; }
   display:flex; align-items:center; justify-content:center;
   background:var(--surface);
   border:1px solid var(--border);
-  font-family:'Fraunces',serif; font-weight:600; font-size:16px;
+  font-family:'Manrope',sans-serif; font-weight:600; font-size:16px;
 }
 .evolve-step.final .evolve-dot{ background:var(--grad-primary); color:#0a0a0e; border-color:transparent; }
-.evolve-label b{ display:block; font-family:'Fraunces',serif; font-size:17px; font-weight:600; color:var(--text); }
+.evolve-label b{ display:block; font-family:'Manrope',sans-serif; font-size:17px; font-weight:600; color:var(--text); }
 .evolve-label span{ font-size:13.5px; color:var(--text-faint); }
 
 /* ==========================================================================
@@ -571,7 +571,7 @@ button{ font-family:inherit; cursor:pointer; }
   background:var(--surface);
   border:1px solid var(--border);
   display:flex; align-items:center; justify-content:center;
-  font-family:'Fraunces',serif; font-size:20px; font-weight:600;
+  font-family:'Manrope',sans-serif; font-size:20px; font-weight:600;
 }
 .flow-node span{ font-size:14px; font-weight:600; letter-spacing:.03em; text-transform:uppercase; color:var(--text-dim); }
 .flow-arrow{ color:var(--text-faint); flex-shrink:0; }
@@ -633,7 +633,7 @@ button{ font-family:inherit; cursor:pointer; }
   transition:.25s;
 }
 .layer-toggle svg{ width:17px; height:17px; flex-shrink:0; opacity:.8; }
-.layer-toggle.active{ background:rgba(139,124,255,.12); border-color:var(--violet-soft); color:var(--text); }
+.layer-toggle.active{ background:rgba(5,150,105,.12); border-color:var(--violet-soft); color:var(--text); }
 .layer-toggle:hover{ border-color:var(--violet-soft); }
 
 .scribble-canvas{
@@ -641,8 +641,8 @@ button{ font-family:inherit; cursor:pointer; }
   min-height:380px;
   padding:28px;
   background:
-    radial-gradient(400px 260px at 80% 10%, rgba(255,122,89,.10), transparent 60%),
-    radial-gradient(400px 260px at 10% 90%, rgba(139,124,255,.12), transparent 60%);
+    radial-gradient(400px 260px at 80% 10%, rgba(16,185,129,.10), transparent 60%),
+    radial-gradient(400px 260px at 10% 90%, rgba(5,150,105,.12), transparent 60%);
   display:flex; flex-wrap:wrap; align-content:flex-start; gap:14px;
 }
 .scribble-canvas .placeholder{
@@ -763,8 +763,8 @@ button{ font-family:inherit; cursor:pointer; }
   width:120px; height:120px; border-radius:50%;
   background:var(--grad-primary);
   display:flex; align-items:center; justify-content:center;
-  font-family:'Fraunces',serif; font-weight:600; color:#0a0a0e; text-align:center; font-size:14px; padding:10px;
-  box-shadow:0 0 60px -6px rgba(139,124,255,.5);
+  font-family:'Manrope',sans-serif; font-weight:600; color:#0a0a0e; text-align:center; font-size:14px; padding:10px;
+  box-shadow:0 0 60px -6px rgba(5,150,105,.5);
 }
 .intent-out{ display:flex; flex-direction:column; gap:10px; }
 .intent-out div{
@@ -806,10 +806,10 @@ button{ font-family:inherit; cursor:pointer; }
   border-radius:50%;
   background:var(--surface); border:1px solid var(--border);
   display:flex; align-items:center; justify-content:center;
-  font-family:'Fraunces',serif; font-weight:600; font-size:15px;
+  font-family:'Manrope',sans-serif; font-weight:600; font-size:15px;
   transition:.3s;
 }
-.tl-step.active .tl-dot{ background:var(--grad-primary); color:#0a0a0e; border-color:transparent; box-shadow:0 0 0 6px rgba(139,124,255,.14); }
+.tl-step.active .tl-dot{ background:var(--grad-primary); color:#0a0a0e; border-color:transparent; box-shadow:0 0 0 6px rgba(5,150,105,.14); }
 .tl-step h4{ font-size:14.5px; text-align:center; margin-bottom:6px; }
 .tl-step p{ font-size:12.5px; text-align:center; color:var(--text-faint); opacity:0; height:0; overflow:hidden; transition:opacity .3s; }
 .tl-step.active p{ opacity:1; height:auto; }
@@ -834,7 +834,7 @@ button{ font-family:inherit; cursor:pointer; }
   display:flex; align-items:center; justify-content:center; text-align:center;
   flex-direction:column; gap:4px;
 }
-.loop-center b{ font-family:'Fraunces',serif; font-size:20px; }
+.loop-center b{ font-family:'Manrope',sans-serif; font-size:20px; }
 .loop-center span{ font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-faint); }
 .loop-node{
   position:absolute;
@@ -865,8 +865,8 @@ button{ font-family:inherit; cursor:pointer; }
   font-size:12px; font-weight:600; color:var(--text-dim);
   position:relative;
 }
-.chain-node b{ font-family:'Fraunces',serif; font-size:22px; color:var(--text); }
-.chain-node.active{ border-color:var(--coral); box-shadow:0 0 0 4px rgba(255,122,89,.12); }
+.chain-node b{ font-family:'Manrope',sans-serif; font-size:22px; color:var(--text); }
+.chain-node.active{ border-color:var(--coral); box-shadow:0 0 0 4px rgba(5,150,105,.12); }
 .chain-link{ flex:0 0 44px; height:1px; background:linear-gradient(90deg, var(--violet), var(--coral)); position:relative; }
 .chain-link::after{
   content:''; position:absolute; right:-2px; top:50%; translate:0 -50%;
@@ -897,7 +897,7 @@ button{ font-family:inherit; cursor:pointer; }
   width:56px; height:56px; border-radius:50%;
   background:var(--grad-primary);
   display:flex; align-items:center; justify-content:center;
-  z-index:1; box-shadow:0 0 40px -6px rgba(139,124,255,.5);
+  z-index:1; box-shadow:0 0 40px -6px rgba(5,150,105,.5);
 }
 .split-mid svg{ width:22px; height:22px; stroke:#0a0a0e; }
 
@@ -916,7 +916,7 @@ button{ font-family:inherit; cursor:pointer; }
   background:var(--surface); border:1px solid var(--border);
   border-radius:var(--radius-l);
   padding:20px 32px;
-  font-family:'Fraunces',serif; font-size:20px; margin-bottom:8px;
+  font-family:'Manrope',sans-serif; font-size:20px; margin-bottom:8px;
 }
 .branch-lines{ height:46px; position:relative; }
 .branch-out{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
@@ -925,7 +925,7 @@ button{ font-family:inherit; cursor:pointer; }
   border-radius:var(--radius-m); padding:18px 12px;
   font-size:13px;
 }
-.branch-card b{ display:block; font-family:'Fraunces',serif; font-size:15px; margin-bottom:6px; }
+.branch-card b{ display:block; font-family:'Manrope',sans-serif; font-size:15px; margin-bottom:6px; }
 .branch-card span{ color:var(--text-faint); font-size:12px; }
 
 @media(max-width:900px){ .branch-out{ grid-template-columns:repeat(2,1fr);} }
@@ -971,7 +971,7 @@ button{ font-family:inherit; cursor:pointer; }
 .cta-band::before{
   content:'';
   position:absolute; inset:0;
-  background:radial-gradient(500px 300px at 50% 0%, rgba(139,124,255,.16), transparent 70%);
+  background:radial-gradient(500px 300px at 50% 0%, rgba(5,150,105,.16), transparent 70%);
 }
 .cta-band > *{ position:relative; }
 .cta-band h2{ font-size:clamp(28px,3.6vw,44px); max-width:18ch; margin:0 auto; }
@@ -1009,7 +1009,7 @@ button{ font-family:inherit; cursor:pointer; }
    MISC PAGE COMPONENTS (About / For Schools / Contact / Legal)
    ========================================================================== */
 .stat-row{ display:flex; gap:48px; flex-wrap:wrap; }
-.stat b{ display:block; font-family:'Fraunces',serif; font-size:38px; background:var(--grad-primary); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.stat b{ display:block; font-family:'Manrope',sans-serif; font-size:38px; background:var(--grad-primary); -webkit-background-clip:text; background-clip:text; color:transparent; }
 .stat span{ font-size:13.5px; color:var(--text-faint); }
 
 .audience-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
