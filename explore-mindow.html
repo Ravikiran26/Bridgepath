@@ -145,27 +145,87 @@
     <div class="grid-2" style="gap:64px; align-items:flex-end; margin-bottom:48px;">
       <div data-reveal>
         <div class="eyebrow">Experience a Scribble</div>
-        <h2>Let visitors interact with a sample Scribble.</h2>
+        <h2>Draw, write and express — right here.</h2>
       </div>
-      <p class="lede" data-reveal data-reveal-delay="1">Text, drawing, image, voice, diagram and media — combined into one expression. Try adding a few layers below.</p>
+      <p class="lede" data-reveal data-reveal-delay="1">A Scribble is a multi-layered space for ideas. Use the tools below to draw freehand, add a text note, upload an image or record a voice clip — all in one expression.</p>
     </div>
-    <div class="scribble-demo" data-reveal>
-      <div class="scribble-controls">
-        <p class="hint">Tap layers to build one Scribble</p>
-        <button class="layer-toggle" data-layer="text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Text</button>
-        <button class="layer-toggle" data-layer="drawing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg>Drawing</button>
-        <button class="layer-toggle" data-layer="image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/></svg>Image</button>
-        <button class="layer-toggle" data-layer="voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>Voice</button>
-        <button class="layer-toggle" data-layer="diagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/></svg>Diagram</button>
-        <button class="layer-toggle" data-layer="media"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg>Media</button>
+
+    <div class="scribble-trial" data-reveal>
+
+      <div class="trial-header">
+        <span class="trial-badge">Trial</span>
+        <span class="trial-title">Your Scribble</span>
+        <button class="trial-clear" type="button">Clear all</button>
       </div>
-      <div class="scribble-canvas">
-        <p class="placeholder">Select a layer to start building a Scribble.</p>
-        <div class="one-expression-banner">= <strong style="color:var(--text)">ONE EXPRESSION.</strong> One expression can contain many forms.</div>
+
+      <div class="trial-workspace">
+        <canvas class="trial-canvas"></canvas>
+        <div class="trial-text-layer"></div>
+        <p class="trial-hint">Select a tool below and start creating</p>
+      </div>
+
+      <div class="trial-toolbar">
+        <button class="trial-tool active" data-tool="draw" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l4-1 11-11-3-3L5 16z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Draw</span>
+        </button>
+        <button class="trial-tool" data-tool="text" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10" stroke-linecap="round"/></svg>
+          <span>Text</span>
+        </button>
+        <button class="trial-tool" data-tool="image" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>
+          <span>Image</span>
+        </button>
+        <button class="trial-tool" data-tool="voice" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke-linecap="round"/></svg>
+          <span>Voice</span>
+        </button>
+      </div>
+
+      <div class="trial-options">
+
+        <div class="tool-panel active" data-panel="draw">
+          <div class="color-swatches">
+            <button class="color-swatch active" data-color="#059669" style="background:#059669" aria-label="Emerald"></button>
+            <button class="color-swatch" data-color="#3b82f6" style="background:#3b82f6" aria-label="Blue"></button>
+            <button class="color-swatch" data-color="#e55a3a" style="background:#e55a3a" aria-label="Red"></button>
+            <button class="color-swatch" data-color="#f59e0b" style="background:#f59e0b" aria-label="Yellow"></button>
+            <button class="color-swatch" data-color="#8b5cf6" style="background:#8b5cf6" aria-label="Purple"></button>
+            <button class="color-swatch" data-color="#111111" style="background:#111111;border:1px solid #555" aria-label="Black"></button>
+          </div>
+          <input type="range" class="brush-size" min="2" max="24" value="4" aria-label="Brush size">
+          <span class="brush-label">Size</span>
+        </div>
+
+        <div class="tool-panel" data-panel="text">
+          <input type="text" class="trial-text-input" placeholder="Type a thought, question or idea...">
+          <button class="btn btn-sm btn-primary add-text-btn" type="button">Add</button>
+          <span class="tool-hint">Press Enter or click Add — click a chip to remove it</span>
+        </div>
+
+        <div class="tool-panel" data-panel="image">
+          <label class="upload-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Upload image
+            <input type="file" accept="image/*" class="image-input" style="display:none">
+          </label>
+          <span class="tool-hint">Image is placed on the canvas</span>
+        </div>
+
+        <div class="tool-panel" data-panel="voice">
+          <button class="record-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg>
+            <span class="record-btn-label">Start Recording</span>
+          </button>
+          <div class="voice-clips"></div>
+        </div>
+
       </div>
     </div>
+
     <div class="btn-row" style="margin-top:28px; justify-content:center;" data-reveal>
-      <a href="for-schools.html#students" class="btn btn-primary">Create a Scribble</a>
+      <a href="for-schools.html#students" class="btn btn-primary">Request Access to Mindow</a>
     </div>
   </div>
 </section>
@@ -342,5 +402,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/scribble-trial.js"></script>
 </body>
 </html>
