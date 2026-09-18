@@ -28,14 +28,24 @@
 
   /* ---- tool switching ---- */
   var currentTool = 'draw';
+
+  function showPanel(name) {
+    trial.querySelectorAll('.tool-panel').forEach(function (p) {
+      p.classList.remove('active');
+      p.style.display = 'none';
+    });
+    var panel = trial.querySelector('[data-panel="' + name + '"]');
+    if (panel) { panel.classList.add('active'); panel.style.display = 'flex'; }
+  }
+
+  showPanel('draw');
+
   trial.querySelectorAll('.trial-tool').forEach(function (btn) {
     btn.addEventListener('click', function () {
       trial.querySelectorAll('.trial-tool').forEach(function (b) { b.classList.remove('active'); });
       btn.classList.add('active');
       currentTool = btn.getAttribute('data-tool');
-      trial.querySelectorAll('.tool-panel').forEach(function (p) { p.classList.remove('active'); });
-      var panel = trial.querySelector('[data-panel="' + currentTool + '"]');
-      if (panel) panel.classList.add('active');
+      showPanel(currentTool);
       canvas.style.cursor = currentTool === 'draw' ? 'crosshair' : 'default';
       canvas.style.pointerEvents = currentTool === 'draw' ? 'auto' : 'none';
     });
@@ -44,7 +54,7 @@
   /* ---- freehand drawing ---- */
   var isDrawing = false;
   var lastX = 0, lastY = 0;
-  var drawColor = '#059669';
+  var drawColor = '#016055';
   var brushSize = 4;
 
   function getPos(e) {

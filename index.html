@@ -173,41 +173,124 @@
 <main>
 
 <!-- ============================= SECTION 01 — HERO ============================= -->
-<section class="hero">
-  <div class="bg-glow"></div>
-  <div class="container hero-grid">
-    <div data-reveal>
-      <div class="eyebrow">AI-powered self-expression platform</div>
-      <h1>What if your mind could become your identity?</h1>
-      <p class="lede">Mindow is an AI-powered self-expression and experiential learning platform where curiosity becomes expression, expression becomes experience, and experience becomes growth.</p>
-      <p class="hero-support">Every mind thinks differently. Every person expresses differently. Mindow creates an environment where thoughts, ideas, choices and experiences can become part of an evolving learning journey.</p>
-      <div class="btn-row">
-        <a href="explore-mindow.html" class="btn btn-primary">Explore Mindow <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6"/></svg></a>
-        <a href="how-it-works.html" class="btn btn-ghost">See How It Works</a>
+<section class="hero-v2">
+  <div class="hv2-glow-green"></div>
+  <div class="hv2-glow-lavender"></div>
+  <div class="container hv2-grid">
+
+    <!-- LEFT -->
+    <div class="hv2-left" data-reveal>
+      <div class="eyebrow">BUILT FOR CURIOUS MINDS</div>
+      <h1 class="hv2-h1">A place for young minds to think, create &amp; grow.</h1>
+      <p class="hv2-copy">Mindow helps students capture ideas, explore interests, build projects and connect their experiences through AI-assisted reflection.</p>
+      <div class="btn-row hv2-btns">
+        <a href="explore-mindow.html" class="btn btn-primary">Experience Mindow
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="margin-left:4px"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="how-it-works.html" class="btn btn-ghost hv2-play-btn">
+          <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.4"/><path d="M8 7l6 3-6 3V7z" fill="currentColor"/></svg>
+          See how it works
+        </a>
       </div>
     </div>
 
-    <div data-reveal data-reveal-delay="2">
-      <div class="identity-loop">
-        <div class="ring"></div>
-        <div class="ring ring-2"></div>
-        <div class="core">
-          <svg class="core-face" viewBox="0 0 24 24" fill="none" stroke="#f4f1ec" stroke-width="1.2">
-            <circle cx="12" cy="9" r="4"/>
-            <path d="M4 21c1.5-4.5 5-6 8-6s6.5 1.5 8 6"/>
-          </svg>
+    <!-- RIGHT: Product mockup -->
+    <div class="hv2-right" data-reveal data-reveal-delay="2">
+
+      <!-- Floating mini-cards -->
+      <div class="hv2-fc hv2-fc-1">
+        <div class="hv2-fc-dot"></div>
+        <div>
+          <div class="hv2-fc-label">AI Connection</div>
+          <div class="hv2-fc-val">3 ideas connected</div>
         </div>
-        <div class="node" style="background:linear-gradient(120deg,#8b7cff33,transparent)">Curiosities</div>
-        <div class="node">Ideas</div>
-        <div class="node">Scribbles</div>
-        <div class="node">Shelf</div>
-        <div class="node">Experiences</div>
-        <div class="node">Projects</div>
-        <div class="node">Perspectives</div>
+      </div>
+      <div class="hv2-fc hv2-fc-2">
+        <div class="hv2-fc-icon">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="hv2-fc-label">New Scribble</div>
+          <div class="hv2-fc-val">Why do cities…</div>
+        </div>
+      </div>
+      <div class="hv2-fc hv2-fc-3">
+        <div class="hv2-fc-icon">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div>
+          <div class="hv2-fc-label">Project started</div>
+          <div class="hv2-fc-val">Urban Spaces</div>
+        </div>
+      </div>
+
+      <!-- Main product card -->
+      <div class="hv2-card" id="hv2-card">
+        <!-- Browser chrome -->
+        <div class="hv2-chrome">
+          <div class="hv2-dots"><span></span><span></span><span></span></div>
+          <div class="hv2-addressbar">mindow.app / maya</div>
+          <div style="flex:0 0 52px"></div>
+        </div>
+
+        <!-- App body -->
+        <div class="hv2-body">
+          <!-- Greeting -->
+          <div class="hv2-greeting">
+            <div class="hv2-avatar">M</div>
+            <div>
+              <div class="hv2-name">Good afternoon, Maya</div>
+              <div class="hv2-grade">Wednesday · Grade 10</div>
+            </div>
+          </div>
+
+          <!-- Scribble input -->
+          <div class="hv2-scribble-wrap">
+            <div class="hv2-prompt-lbl">What's on your mind?</div>
+            <div class="hv2-scribble-box">
+              <span class="hv2-scribble-text">I've been wondering why cities feel different at night…</span><span class="hv2-cursor"></span>
+            </div>
+          </div>
+
+          <!-- Your World stats -->
+          <div class="hv2-world">
+            <div class="hv2-world-lbl">Your World</div>
+            <div class="hv2-stats">
+              <div class="hv2-stat"><b>24</b><span>Scribbles</span></div>
+              <div class="hv2-stat"><b>4</b><span>Projects</span></div>
+              <div class="hv2-stat"><b>9</b><span>Experiences</span></div>
+              <div class="hv2-stat"><b>31</b><span>Shelf</span></div>
+            </div>
+          </div>
+
+          <!-- AI insight -->
+          <div class="hv2-ai">
+            <div class="hv2-ai-header">
+              <span class="hv2-ai-pulse"></span>
+              Mindow noticed a connection
+            </div>
+            <p class="hv2-ai-body">Your Scribble about public spaces connects with your photography project.</p>
+            <span class="hv2-ai-link">Explore connection →</span>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
+
+<!-- Transition strip -->
+<div class="hv2-strip">
+  <div class="container">
+    <div class="hv2-strip-inner">
+      <span>CURIOUS</span><span class="hv2-arr">→</span>
+      <span>EXPRESS</span><span class="hv2-arr">→</span>
+      <span>CONNECT</span><span class="hv2-arr">→</span>
+      <span>EXPERIENCE</span><span class="hv2-arr">→</span>
+      <span>GROW</span>
+    </div>
+  </div>
+</div>
 
 <!-- ============================= SECTION 02 — FACE TO MIND ============================= -->
 <section class="section section-alt">

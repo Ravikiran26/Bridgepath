@@ -195,6 +195,22 @@
     });
   });
 
+  /* ---------- Hero product card: subtle cursor tilt ---------- */
+  var hv2Card = document.getElementById('hv2-card');
+  if(hv2Card){
+    hv2Card.addEventListener('mousemove', function(e){
+      var rect = hv2Card.getBoundingClientRect();
+      var cx = rect.left + rect.width / 2;
+      var cy = rect.top  + rect.height / 2;
+      var dx = (e.clientX - cx) / (rect.width / 2);
+      var dy = (e.clientY - cy) / (rect.height / 2);
+      hv2Card.style.transform = 'perspective(900px) rotateY(' + (dx * 3) + 'deg) rotateX(' + (-dy * 2) + 'deg) translateY(-5px) scale(1.006)';
+    });
+    hv2Card.addEventListener('mouseleave', function(){
+      hv2Card.style.transform = '';
+    });
+  }
+
   /* ---------- Contact / demo request forms ---------- */
   document.querySelectorAll('form[data-static-form]').forEach(function(form){
     form.addEventListener('submit', function(e){
