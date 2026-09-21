@@ -276,9 +276,21 @@ background: #0b6f63;
 
 .logo .mark{ width:26px; height:26px; flex-shrink:0; }
 
+/* Logo mark — circular crop of the PNG icon */
+.logo-img{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  object-fit:cover;
+  object-position:50% 8%;
+  flex-shrink:0;
+  display:block;
+}
+
+/* Logo wordmark */
 .logo-word{
   font-family:'Manrope', sans-serif;
-  font-size:22px;
+  font-size:21px;
   font-weight:800;
   letter-spacing:-0.03em;
   background:linear-gradient(135deg, #1a3d7c 0%, #016055 100%);
