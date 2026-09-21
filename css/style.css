@@ -275,16 +275,22 @@ background: #0b6f63;
 }
 
 .logo .mark{ width:26px; height:26px; flex-shrink:0; }
-.logo-img{
-  height:40px;
-  width:auto;
-  display:block;
-  object-fit:contain;
-  mix-blend-mode:multiply;
+
+.logo-word{
+  font-family:'Manrope', sans-serif;
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:-0.03em;
+  background:linear-gradient(135deg, #1a3d7c 0%, #016055 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  line-height:1;
 }
-[data-theme="dark"] .logo-img{
-  mix-blend-mode:normal;
-  filter:brightness(0) invert(1);
+[data-theme="dark"] .logo-word{
+  background:linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
 }
 
 .main-nav{
