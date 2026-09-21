@@ -61,6 +61,20 @@
     revealEls.forEach(function(el){ el.classList.add('in'); });
   }
 
+  /* ---------- circular learning diagram node placement ---------- */
+  document.querySelectorAll('.cl-wrap').forEach(function(wrap){
+    var nodes = wrap.querySelectorAll('.cl-node');
+    var n = nodes.length;
+    nodes.forEach(function(node, i){
+      var angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+      var radius = 44;
+      var x = 50 + radius * Math.cos(angle);
+      var y = 50 + radius * Math.sin(angle);
+      node.style.left = x + '%';
+      node.style.top  = y + '%';
+    });
+  });
+
   /* ---------- identity loop node placement (hero) ---------- */
   document.querySelectorAll('.identity-loop').forEach(function(loop){
     var nodes = loop.querySelectorAll('.node');
