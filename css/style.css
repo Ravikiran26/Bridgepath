@@ -1227,37 +1227,85 @@ background: #0b6f63;
    ========================================================================== */
 .loop-wrap{
   position:relative;
-  max-width:560px;
+  max-width:500px;
   aspect-ratio:1/1;
   margin:0 auto;
 }
-.loop-svg{ width:100%; height:100%; }
-.loop-svg circle.track{ fill:none; stroke:var(--border); stroke-width:1; }
-.loop-svg path.arc{ fill:none; stroke-linecap:round; }
-.loop-center{
-  position:absolute; inset:34%;
-  border-radius:50%;
-  background:var(--surface);
-  border:1px solid var(--border);
-  display:flex; align-items:center; justify-content:center; text-align:center;
-  flex-direction:column; gap:4px;
+.loop-svg{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  pointer-events:none;
+  overflow:visible;
 }
-.loop-center b{ font-family:'Manrope',sans-serif; font-size:20px; }
-.loop-center span{ font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-faint); }
+.loop-svg circle.track{
+  fill:none;
+  stroke:rgba(79,74,67,0.12);
+  stroke-width:1;
+  stroke-dasharray:3 7;
+}
+[data-theme="dark"] .loop-svg circle.track{ stroke:rgba(255,255,255,0.08); }
+.loop-svg path.arc{ fill:none; stroke-linecap:round; }
+
+/* Center medallion */
+.loop-center{
+  position:absolute; inset:30%;
+  border-radius:50%;
+  background:#FBFAF6;
+  border:1.5px solid rgba(0,0,0,0.07);
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  flex-direction:column; gap:3px;
+  box-shadow:0 0 0 8px rgba(14,124,112,0.06),
+             0 0 0 16px rgba(14,124,112,0.03),
+             0 8px 32px -8px rgba(0,0,0,.15);
+  z-index:2;
+}
+[data-theme="dark"] .loop-center{ background:var(--surface); border-color:var(--border); }
+.loop-center b{
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(16px,3%,22px);
+  font-weight:800;
+  color:#0E7C70;
+  line-height:1;
+}
+.loop-center span{
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#6F6B75;
+  line-height:1.4;
+}
+
+/* Step nodes — pill cards with per-node accent color via nth-child */
 .loop-node{
   position:absolute;
   transform:translate(-50%,-50%);
-  background:var(--bg-soft);
-  border:1px solid var(--border);
   border-radius:var(--radius-full);
-  padding:9px 15px;
-  font-size:12px;
-  font-weight:600;
+  padding:8px 16px;
+  font-size:12.5px;
+  font-weight:700;
   white-space:nowrap;
   cursor:default;
-  transition:.3s;
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease);
+  z-index:3;
+  background:rgba(251,250,246,0.95);
+  border:1.5px solid;
+  box-shadow:0 2px 12px -4px rgba(0,0,0,.10);
 }
-.loop-node:hover{ border-color:var(--gold); color:var(--gold); transform:translate(-50%,-50%) scale(1.06); }
+.loop-node:hover{ transform:translate(-50%,-50%) scale(1.08); box-shadow:0 6px 20px -6px rgba(0,0,0,.18); }
+
+/* Per-node accent colours: nodes are children 3–10 (after svg + loop-center) */
+.loop-node:nth-child(3) { border-color:#2d7a52; color:#2d7a52; background:rgba(95,168,128,.10); }
+.loop-node:nth-child(4) { border-color:#6655b8; color:#6655b8; background:rgba(128,108,188,.10); }
+.loop-node:nth-child(5) { border-color:#9a7210; color:#9a7210; background:rgba(204,164,56,.10); }
+.loop-node:nth-child(6) { border-color:#b04030; color:#b04030; background:rgba(200,110,90,.10); }
+.loop-node:nth-child(7) { border-color:#2460a8; color:#2460a8; background:rgba(72,128,188,.10); }
+.loop-node:nth-child(8) { border-color:#0e7c70; color:#0e7c70; background:rgba(14,124,112,.10); }
+.loop-node:nth-child(9) { border-color:#7a5294; color:#7a5294; background:rgba(144,112,172,.10); }
+.loop-node:nth-child(10){ border-color:#9a5e18; color:#9a5e18; background:rgba(196,128,60,.10); }
+
+/* Dark mode node tweaks */
+[data-theme="dark"] .loop-node{ background:rgba(28,27,34,0.85); }
 
 /* ==========================================================================
    CIRCULAR LEARNING DIAGRAM  — premium redesign
