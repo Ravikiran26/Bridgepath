@@ -275,6 +275,17 @@ background: #0b6f63;
 }
 
 .logo .mark{ width:26px; height:26px; flex-shrink:0; }
+.logo-img{
+  height:40px;
+  width:auto;
+  display:block;
+  object-fit:contain;
+  mix-blend-mode:multiply;
+}
+[data-theme="dark"] .logo-img{
+  mix-blend-mode:normal;
+  filter:brightness(0) invert(1);
+}
 
 .main-nav{
   display:flex;
