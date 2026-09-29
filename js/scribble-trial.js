@@ -218,4 +218,33 @@
     });
   }
 
+  /* ---- organise ---- */
+  var organiseBtn = trial.querySelector('#organise-btn');
+  var organiseHint = trial.querySelector('#organise-hint');
+  if (organiseBtn) {
+    organiseBtn.addEventListener('click', function () {
+      var chips = textLayer.querySelectorAll('.trial-text-chip');
+      if (chips.length === 0) {
+        organiseHint.textContent = 'Add some text notes first, then organise them.';
+        return;
+      }
+      organiseHint.textContent = 'Organising your ideas…';
+      organiseBtn.disabled = true;
+      setTimeout(function () {
+        var labels = ['💡 Ideas', '❓ Questions', '🔗 Connections'];
+        chips.forEach(function (chip, i) {
+          chip.style.borderColor = ['#016055','#009473','#1cb08f'][i % 3];
+          chip.style.borderWidth = '1.5px';
+          chip.style.borderStyle = 'solid';
+          var tag = document.createElement('span');
+          tag.style.cssText = 'font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#016055;display:block;margin-bottom:2px;';
+          tag.textContent = labels[i % 3];
+          if (!chip.querySelector('span')) chip.prepend(tag);
+        });
+        organiseHint.textContent = 'Your Scribble has been organised by theme.';
+        organiseBtn.disabled = false;
+      }, 900);
+    });
+  }
+
 })();

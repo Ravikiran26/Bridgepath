@@ -13,7 +13,7 @@
 
 <header class="site-header">
   <div class="container nav-inner">
-    <a href="index.html" class="logo"><span class="logo-word">mindow</span></a>
+    <a href="index.html" class="logo"><img src="img/logo.png" alt="Mindow" class="logo-img"></a>
     <nav class="main-nav">
       <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
       <div class="nav-item">
@@ -31,7 +31,6 @@
         <div class="mega">
           <a href="how-it-works.html#scribble"><span class="mega-title">Scribble</span><span class="mega-desc">How I think & create</span></a>
           <a href="how-it-works.html#shelf"><span class="mega-title">Shelf</span><span class="mega-desc">What I choose & explore</span></a>
-          <a href="how-it-works.html#intent-interface"><span class="mega-title">Intent Interface</span><span class="mega-desc">One intent, many mediums</span></a>
           <a href="how-it-works.html#intent-scribble"><span class="mega-title">Intent Interactive Scribble</span><span class="mega-desc">One idea, an entire journey</span></a>
           <a href="how-it-works.html#scribble-chain"><span class="mega-title">Scribble Chain</span><span class="mega-desc">Curiosity as a continuous loop</span></a>
           <a href="how-it-works.html#experiential-learning"><span class="mega-title">Experiential Learning</span><span class="mega-desc">Turning curiosity into experience</span></a>
@@ -44,7 +43,6 @@
         <div class="mega">
           <a href="explore-mindow.html#scribble"><span class="mega-title">Experience a Scribble</span><span class="mega-desc">Try the interactive demo</span></a>
           <a href="explore-mindow.html#shelf"><span class="mega-title">Explore a Shelf</span><span class="mega-desc">See an evolving world of interests</span></a>
-          <a href="explore-mindow.html#chain"><span class="mega-title">Follow a Scribble Chain</span><span class="mega-desc">Watch one idea lead to another</span></a>
           <a href="explore-mindow.html#social-wall"><span class="mega-title">Social Wall</span><span class="mega-desc">Different minds, one environment</span></a>
           <a href="explore-mindow.html#learning-journey"><span class="mega-title">Learning Journey</span><span class="mega-desc">The full Mindow path</span></a>
           <a href="explore-mindow.html#loop"><span class="mega-title">Mindow Learning Loop</span><span class="mega-desc">The signature product loop</span></a>
@@ -78,7 +76,6 @@
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke-linecap="round"/></svg>
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <a href="#" class="nav-login">Login</a>
       <a href="explore-mindow.html" class="btn btn-primary btn-sm">Experience Mindow</a>
       <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
@@ -97,7 +94,6 @@
   <details class="mobile-group"><summary>How It Works <span>+</span></summary><ul>
     <li><a href="how-it-works.html#scribble">Scribble</a></li>
     <li><a href="how-it-works.html#shelf">Shelf</a></li>
-    <li><a href="how-it-works.html#intent-interface">Intent Interface</a></li>
     <li><a href="how-it-works.html#intent-scribble">Intent Interactive Scribble</a></li>
     <li><a href="how-it-works.html#scribble-chain">Scribble Chain</a></li>
     <li><a href="how-it-works.html#mentor-student">Mentor ↔ Student</a></li>
@@ -105,7 +101,6 @@
   <details class="mobile-group" open><summary>Explore Mindow <span>+</span></summary><ul>
     <li><a href="explore-mindow.html#scribble">Experience a Scribble</a></li>
     <li><a href="explore-mindow.html#shelf">Explore a Shelf</a></li>
-    <li><a href="explore-mindow.html#chain">Follow a Scribble Chain</a></li>
     <li><a href="explore-mindow.html#social-wall">Social Wall</a></li>
     <li><a href="explore-mindow.html#loop">Mindow Learning Loop</a></li>
   </ul></details>
@@ -181,6 +176,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke-linecap="round"/></svg>
           <span>Voice</span>
         </button>
+        <button class="trial-tool" data-tool="organise" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h7M3 9h5M3 13h7M3 17h5" stroke-linecap="round"/><rect x="13" y="4" width="8" height="7" rx="2"/><rect x="13" y="14" width="8" height="6" rx="2"/></svg>
+          <span>Organise</span>
+        </button>
       </div>
 
       <div class="trial-options">
@@ -221,6 +220,14 @@
           <div class="voice-clips"></div>
         </div>
 
+        <div class="tool-panel" data-panel="organise">
+          <button class="btn btn-sm btn-primary" type="button" id="organise-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:14px;height:14px"><path d="M12 2a7 7 0 00-2 13.7V17h4v-1.3A7 7 0 0012 2z" stroke-linecap="round"/><path d="M9 21h6" stroke-linecap="round"/></svg>
+            AI Organise
+          </button>
+          <span class="tool-hint" id="organise-hint">AI will group your ideas by theme</span>
+        </div>
+
       </div>
     </div>
 
@@ -249,31 +256,6 @@
     </div>
     <div class="btn-row" style="margin-top:28px; justify-content:center;" data-reveal>
       <a href="for-schools.html#students" class="btn btn-primary">Explore a Shelf</a>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="chain">
-  <div class="container">
-    <div class="section-head center">
-      <div class="eyebrow">Follow a Scribble Chain</div>
-      <h2>Scribble → Idea → Experiment → Experience → Reflection → New Scribble.</h2>
-    </div>
-    <div class="chain-row" data-reveal>
-      <div class="chain-node"><b>01</b><span>Scribble</span></div>
-      <div class="chain-link"></div>
-      <div class="chain-node"><b>02</b><span>Idea</span></div>
-      <div class="chain-link"></div>
-      <div class="chain-node"><b>03</b><span>Experiment</span></div>
-      <div class="chain-link"></div>
-      <div class="chain-node active"><b>04</b><span>Experience</span></div>
-      <div class="chain-link"></div>
-      <div class="chain-node"><b>05</b><span>Reflection</span></div>
-      <div class="chain-link"></div>
-      <button class="chain-add" aria-label="Add next Scribble">+</button>
-    </div>
-    <div class="btn-row" style="margin-top:8px; justify-content:center;" data-reveal>
-      <a href="how-it-works.html#scribble-chain" class="btn btn-ghost">Follow the Journey</a>
     </div>
   </div>
 </section>
@@ -323,21 +305,31 @@
       <p>Mindow is not trying to make every mind learn the same way. It is creating an environment where every mind can express curiosity, be understood, experience ideas and continue growing.</p>
     </div>
     <div class="loop-wrap" data-reveal style="max-width:640px">
-      <svg class="loop-svg" viewBox="0 0 200 200">
-        <circle class="track" cx="100" cy="100" r="90"/>
-        <path class="arc" d="M100 10 A90 90 0 0 1 190 100" stroke="url(#gLoop2)" stroke-width="2"/>
-        <defs><linearGradient id="gLoop2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8b7cff"/><stop offset="1" stop-color="#ff7a59"/></linearGradient></defs>
-      </svg>
-      <div class="loop-center"><b>MINDOW</b><span>curiosity · expression · experience</span></div>
-      <div class="loop-node">Curiosity</div>
-      <div class="loop-node">Expression</div>
-      <div class="loop-node">Intent</div>
-      <div class="loop-node">AI Understanding</div>
-      <div class="loop-node">Experience</div>
-      <div class="loop-node">Reflection</div>
-      <div class="loop-node">Growth</div>
-      <div class="loop-node">New Curiosity</div>
-    </div>
+  <svg class="loop-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="loopArr2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+        <path d="M1 1.5L5.5 3.5L1 5.5" stroke="#016055" stroke-width="1" fill="none" stroke-linecap="round"/>
+      </marker>
+      <linearGradient id="loopGrad2" x1="0" y1="0" x2="1" y2="1">
+        <stop stop-color="#016055"/><stop offset="1" stop-color="#009473"/>
+      </linearGradient>
+    </defs>
+    <circle class="track" cx="100" cy="100" r="90"/>
+    <path class="arc" d="M 125 11 A 90 90 0 0 1 181 68" stroke="url(#loopGrad2)" stroke-width="2" stroke-linecap="round" marker-end="url(#loopArr2)"/>
+    <path class="arc" d="M 189 125 A 90 90 0 0 1 165 181" stroke="url(#loopGrad2)" stroke-width="2" stroke-linecap="round" marker-end="url(#loopArr2)"/>
+    <path class="arc" d="M 75 189 A 90 90 0 0 1 19 165" stroke="url(#loopGrad2)" stroke-width="2" stroke-linecap="round" marker-end="url(#loopArr2)"/>
+    <path class="arc" d="M 11 75 A 90 90 0 0 1 35 19" stroke="url(#loopGrad2)" stroke-width="2" stroke-linecap="round" marker-end="url(#loopArr2)"/>
+  </svg>
+  <div class="loop-center"><b>MINDOW</b><span>curiosity · expression · experience</span></div>
+  <div class="loop-node">Curiosity</div>
+  <div class="loop-node">Expression</div>
+  <div class="loop-node">Intent</div>
+  <div class="loop-node">AI Understanding</div>
+  <div class="loop-node">Experience</div>
+  <div class="loop-node">Reflection</div>
+  <div class="loop-node">Growth</div>
+  <div class="loop-node">New Curiosity</div>
+</div>
   </div>
 </section>
 
@@ -360,7 +352,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="logo"><span class="logo-word">mindow</span></a>
+        <a href="index.html" class="logo"><img src="img/logo.png" alt="Mindow" class="logo-img"></a>
         <p>Curiosity. Expression. Experience. Mindow is an AI-powered self-expression and experiential learning platform where curiosity becomes expression, expression becomes experience, and experience becomes growth.</p>
       </div>
       <div class="footer-col"><h5>Explore</h5><ul>
@@ -369,7 +361,6 @@
         <li><a href="how-it-works.html#scribble">Scribble</a></li>
         <li><a href="how-it-works.html#shelf">Shelf</a></li>
         <li><a href="how-it-works.html#scribble-chain">Scribble Chain</a></li>
-        <li><a href="how-it-works.html#intent-interface">Intent Interface</a></li>
         <li><a href="how-it-works.html#experiential-learning">Experiential Learning</a></li>
       </ul></div>
       <div class="footer-col"><h5>For Schools</h5><ul>
