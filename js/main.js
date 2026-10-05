@@ -55,7 +55,7 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold:0.14, rootMargin:'0px 0px -60px 0px' });
+    }, { threshold:0, rootMargin:'0px 0px 15% 0px' });
     revealEls.forEach(function(el){ io.observe(el); });
   } else {
     revealEls.forEach(function(el){ el.classList.add('in'); });
