@@ -160,9 +160,18 @@
   document.querySelectorAll('.stepper').forEach(function(stepper){
     var steps = stepper.querySelectorAll('.stepper-step');
     var idx = 0;
+    // optional visual demo right after the stepper, one panel per step
+    var demo = stepper.nextElementSibling && stepper.nextElementSibling.classList.contains('mode-demo') ? stepper.nextElementSibling : null;
+    var panels = demo ? demo.querySelectorAll('.md-panel') : [];
+    var modeLabel = demo ? demo.querySelector('.md-mode-label') : null;
     function activate(i){
       steps.forEach(function(s){ s.classList.remove('active'); });
       steps[i].classList.add('active');
+      panels.forEach(function(p, j){
+        p.classList.toggle('active', j === i);
+        p.setAttribute('aria-hidden', j === i ? 'false' : 'true');
+      });
+      if(modeLabel && panels[i]) modeLabel.textContent = panels[i].getAttribute('data-mode');
     }
     steps.forEach(function(step, i){
       step.addEventListener('click', function(){ idx = i; activate(idx); restart(); });
@@ -173,9 +182,47 @@
       timer = setInterval(function(){
         idx = (idx + 1) % steps.length;
         activate(idx);
-      }, 2200);
+      }, demo ? 4200 : 2200);   // slower when the demo needs time to play
+    }
+    if(demo){
+      // pause auto-cycling while someone is looking at the demo
+      demo.addEventListener('mouseenter', function(){ clearInterval(timer); });
+      demo.addEventListener('mouseleave', restart);
     }
     activate(0);
+    restart();
+  });
+
+  /* ---------- Mindow Ecosystem: 5 stages (auto-cycle + click, pause on hover) ---------- */
+  document.querySelectorAll('[data-eco]').forEach(function(eco){
+    var tabs = eco.querySelectorAll('.eco-tab');
+    var panels = eco.querySelectorAll('.eco-panel');
+    var idx = 0, timer;
+    function activate(i, scrollTab){
+      tabs.forEach(function(t, j){
+        t.classList.toggle('active', j === i);
+        t.setAttribute('aria-selected', j === i ? 'true' : 'false');
+      });
+      panels.forEach(function(p, j){
+        p.classList.toggle('active', j === i);
+        p.setAttribute('aria-hidden', j === i ? 'false' : 'true');
+      });
+      // keep the active tab visible when the tab row scrolls (tablet / mobile)
+      var row = tabs[i].parentElement;
+      if(scrollTab && row.scrollWidth > row.clientWidth){
+        row.scrollTo({ left: tabs[i].offsetLeft - row.offsetLeft - 8, behavior:'smooth' });
+      }
+    }
+    function restart(){
+      clearInterval(timer);
+      timer = setInterval(function(){ idx = (idx + 1) % tabs.length; activate(idx, true); }, 5500);
+    }
+    tabs.forEach(function(t, i){
+      t.addEventListener('click', function(){ idx = i; activate(idx, true); restart(); });
+    });
+    eco.addEventListener('mouseenter', function(){ clearInterval(timer); });
+    eco.addEventListener('mouseleave', restart);
+    activate(0, false);
     restart();
   });
 
