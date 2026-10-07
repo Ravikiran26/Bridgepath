@@ -2395,8 +2395,11 @@ button{ font-family:inherit; cursor:pointer; }
 [data-theme="dark"] .eyebrow{ outline-color:rgba(52,211,153,.3); }
 .eyebrow{ margin-bottom:calc(var(--sp-eyebrow-title) + 4px); }  /* room for the ring */
 
-/* Logo sits in a neat badge instead of a bare white box */
-.logo-img{ border-radius:10px; box-shadow:0 0 0 1px var(--border), 0 6px 18px -10px rgba(0,0,0,.25); }
+/* Logo: transparent PNG, sits directly on the header / footer background */
+.logo-img{ height:34px; width:auto; background:none; border:0; border-radius:0; box-shadow:none; }
+.logo-img--full{ height:auto; width:min(220px, 100%); }
+/* dark mode: navy wordmark needs a light plate to stay visible */
+[data-theme="dark"] .logo-img{ background:#f5f0e8; padding:6px 10px; border-radius:10px; box-sizing:content-box; }
 
 /* ---- Hero finish ---- */
 .hero--text{ overflow:hidden; }
@@ -2687,6 +2690,55 @@ p{ line-height:1.7; }
 .xs-cat header small{ display:block; font-size:14.5px; color:var(--text-dim); line-height:1.4; }
 .xs-who{ display:flex; align-items:center; gap:8px; font-size:14.5px; font-weight:600; color:var(--text); padding-top:12px; border-top:1px solid var(--border-soft); }
 .xs-cat p{ font-size:15.5px; color:var(--text); }
+
+/* Your Mindow Identity — Shelf + Scribbles Venn */
+.identity{
+  max-width:880px; margin:var(--space-7) auto 0;
+  padding:clamp(24px, 4vw, 44px);
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-l);
+  box-shadow:0 30px 70px -45px rgba(1,61,53,.4);
+}
+.id-head{ display:flex; align-items:center; gap:18px; }
+.id-badge{ width:60px; height:60px; flex-shrink:0; border-radius:50%; display:grid; place-items:center; background:#0a5549; color:#fff; }
+.id-badge svg{ width:28px; height:28px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+.id-head h3{ font-family:var(--font-display); font-weight:500; font-size:clamp(26px, 2.6vw, 34px); line-height:1.15; color:var(--text); }
+.id-head p{ margin-top:4px; font-size:clamp(17px, 1.5vw, 19px); color:var(--text-dim); }
+
+.venn{ position:relative; aspect-ratio:640 / 300; margin:var(--space-5) 0 var(--space-4); }
+.venn-shapes{ position:absolute; inset:0; width:100%; height:100%; }
+.vn-left{ fill:rgba(28,176,143,.16); }
+.vn-right{ fill:rgba(142,108,216,.16); }
+.vn-mid{ fill:#2f7d6b; }
+[data-theme="dark"] .vn-mid{ fill:#1f6b5b; }
+.vn-label{
+  position:absolute; top:50%; transform:translate(-50%,-50%);
+  width:28%; text-align:center; display:grid; gap:4px;
+}
+.vn-label b{ font-family:var(--font-display); font-weight:600; font-size:clamp(20px, 2.4vw, 30px); line-height:1.15; color:var(--text); }
+.vn-label span{ font-size:clamp(14px, 1.4vw, 17px); color:var(--text-dim); line-height:1.35; }
+.vn-label small{ font-size:clamp(13px, 1.25vw, 15.5px); font-style:italic; color:var(--text-faint); }
+.vn-label--left{ left:18%; }
+.vn-label--right{ left:82%; }
+.vn-label--mid{ left:50%; width:24%; }
+.vn-label--mid b{ color:#fff; font-weight:500; font-size:clamp(18px, 2.2vw, 28px); }
+.id-foot{ text-align:center; font-family:var(--font-display); font-size:clamp(18px, 1.7vw, 22px); color:var(--text); }
+
+/* circles glide together when the card scrolls into view */
+.venn-shapes ellipse{ transition:transform 1.1s var(--ease), opacity .8s var(--ease); }
+.identity:not(.in) .vn-left{ transform:translateX(-60px); }
+.identity:not(.in) .vn-right{ transform:translateX(60px); }
+.identity:not(.in) .vn-mid,
+.identity:not(.in) .vn-label--mid{ opacity:0; }
+.vn-label--mid{ transition:opacity .8s var(--ease) .6s; }
+.identity.in .vn-mid{ transition-delay:.5s; }
+
+@media(max-width:599px){
+  .venn{ aspect-ratio:640 / 460; }           /* taller ellipses so labels fit on phones */
+  .vn-label{ width:30%; }
+  .vn-label--mid{ width:26%; }
+  .id-head{ align-items:flex-start; }
+  .id-badge{ width:48px; height:48px; }
+}
 
 @keyframes mk-spin{ to{ transform:rotate(360deg); } }
 @keyframes mk-pulse{ 0%,100%{ box-shadow:0 0 0 10px rgba(10,85,73,.08), 0 0 40px rgba(10,85,73,.3); } 50%{ box-shadow:0 0 0 16px rgba(10,85,73,.05), 0 0 60px rgba(10,85,73,.45); } }
