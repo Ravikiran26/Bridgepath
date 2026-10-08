@@ -6,8 +6,9 @@
 <title>Mindow — Curiosity. Expression. Experience.</title>
 <meta name="description" content="Mindow is an AI-powered self-expression and experiential learning platform where curiosity becomes expression, expression becomes experience, and experience becomes growth.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%230a0a0e'/%3E%3Cpath d='M16 5v22M8 10c4 3 4 9 0 12M24 10c-4 3-4 9 0 12' stroke='%238b7cff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/style.css?v=19">
 <script>(function(){try{var t=localStorage.getItem('mindow-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
@@ -97,7 +98,7 @@
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke-linecap="round"/></svg>
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <a href="explore-mindow.html" class="btn btn-primary btn-sm">Experience Mindow</a>
+      <a href="index.html#demo" class="btn btn-primary btn-sm">Talk to Mindow</a>
       <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -155,8 +156,8 @@
   </details>
   <a href="insights.html" style="font-family:'Fraunces',serif;font-size:19px;display:block;padding:16px 0;border-bottom:1px solid var(--border-soft);">Insights</a>
   <div class="mobile-cta">
-    <a href="explore-mindow.html" class="btn btn-primary">Experience Mindow</a>
-    <a href="for-schools.html" class="btn btn-ghost">For Schools</a>
+    <a href="index.html#demo" class="btn btn-primary">Talk to Mindow</a>
+    <a href="explore-mindow.html" class="btn btn-ghost">Experience Mindow</a>
   </div>
 </div>
 
@@ -165,15 +166,28 @@
 <!-- ============================= SECTION 01 — HERO ============================= -->
 <section class="hero hero--text">
   <div class="bg-glow"></div>
+  <!-- living background: drifting washes + slow rotating rings -->
+  <div class="hero-art" aria-hidden="true">
+    <span class="wash wash-1"></span>
+    <span class="wash wash-2"></span>
+    <span class="wash wash-3"></span>
+    <svg class="hero-rings" viewBox="0 0 800 800">
+      <circle cx="400" cy="400" r="390"/>
+      <circle cx="400" cy="400" r="318" class="dash"/>
+      <circle cx="400" cy="400" r="246"/>
+      <circle cx="400" cy="10" r="5" class="orb"/>
+      <circle cx="400" cy="646" r="4" class="orb"/>
+    </svg>
+  </div>
   <div class="container hero-grid">
-    <div data-reveal>
+    <div class="hero-copy">
       <div class="eyebrow">AI-powered self-expression platform &amp; self-Experiential learning platform</div>
       <p class="hero-premessage">Not just how I <span class="hl">look.</span><br>How I <span class="hl">think, create, choose and experience.</span></p>
-      <h1>What if your <span class="hl">mind</span> could become your <span class="hl">identity</span> ?</h1>
+      <h1>What if your <span class="hl">mind</span> could become your <span class="hl">identity</span>?</h1>
       <p class="lede">Mindow is an AI-powered self-expression and experiential learning platform where curiosity becomes expression, expression becomes experience, and experience becomes growth.</p>
       <p class="hero-support">Every mind thinks differently. Every person expresses differently. Mindow creates an environment where thoughts, ideas, choices and experiences can become part of an evolving learning journey.</p>
       <div class="btn-row">
-        <a href="explore-mindow.html" class="btn btn-primary">Explore Mindow <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        <a href="#demo" class="btn btn-primary">See a Demo <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6"/></svg></a>
         <a href="how-it-works.html" class="btn btn-ghost">See How It Works</a>
       </div>
       <div class="hero-ornament" aria-hidden="true"><span>✦</span></div>
@@ -209,27 +223,42 @@
   </div>
 </section>
 
-<!-- ============================= SECTION 02 — FACE TO MIND ============================= -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="two-col">
-      <div data-reveal>
-        <div class="eyebrow">A future vision of digital identity</div>
-        <h2 class="section-title-sub">We move into the future by shifting from <span class="hl">how you look</span> to <span class="hl">how you think.</span></h2>
-        <p class="lede">For years, our digital identity has largely been represented by how we look. Our photographs became our digital identity. But as AI changes how we interact with technology, perhaps identity can evolve too.</p>
-        <p class="lede">Mindow explores a future where digital identity can represent more than a photograph — our curiosity, ideas, creations, interests, experiences and the way our thinking evolves.</p>
-        <p class="key-message">Not just how I look.<br>How I think, create, choose and experience.</p>
+<!-- keyword ribbon (decorative; same words as the closing CTA) -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Curiosity</span><i>✦</i><span>Expression</span><i>✦</i><span>Experience</span><i>✦</i><span>Understand</span><i>✦</i><span>Empower</span><i>✦</i><span>Grow</span><i>✦</i>
+    <span>Curiosity</span><i>✦</i><span>Expression</span><i>✦</i><span>Experience</span><i>✦</i><span>Understand</span><i>✦</i><span>Empower</span><i>✦</i><span>Grow</span><i>✦</i>
+  </div>
+</div>
+
+<!-- ============================= SECTION — FOR SCHOOL LEADERSHIP (positioning) ============================= -->
+<section class="section band-dark" id="for-schools">
+  <div class="container two-col band-grid">
+    <div data-reveal>
+      <div class="eyebrow">For Schools</div>
+      <h2 class="section-title-sub">Not another LMS.<br>Not another student portfolio.</h2>
+      <p class="lede">Mindow creates a new interface between learner, mentor, AI, expression and experience — where curiosity, self-expression and experiential learning become part of the everyday learning journey.</p>
+      <div class="btn-row">
+        <a href="#demo" class="btn btn-light">See a Demo</a>
+        <a href="for-schools.html" class="btn btn-outline-light">For Schools</a>
       </div>
-      <div data-reveal data-reveal-delay="2">
-        <div class="evolve-flow">
-          <div class="evolve-step"><div class="evolve-dot">😊</div><div class="evolve-label"><b>Face</b><span>The old digital identity</span></div></div>
-          <div class="evolve-step"><div class="evolve-dot">✦</div><div class="evolve-label"><b>Interests</b><span>What you're drawn to</span></div></div>
-          <div class="evolve-step"><div class="evolve-dot">◈</div><div class="evolve-label"><b>Ideas</b><span>How your thinking moves</span></div></div>
-          <div class="evolve-step"><div class="evolve-dot">✎</div><div class="evolve-label"><b>Creations</b><span>What you make</span></div></div>
-          <div class="evolve-step"><div class="evolve-dot">◎</div><div class="evolve-label"><b>Experiences</b><span>What you've lived through</span></div></div>
-          <div class="evolve-step final"><div class="evolve-dot">→</div><div class="evolve-label"><b>Evolving Identity</b><span>The Mindow vision</span></div></div>
-        </div>
-      </div>
+    </div>
+    <div class="audience-stack">
+      <article class="aud" data-reveal>
+        <span class="aud-num">01</span>
+        <div><h3>Administrators</h3><p>Bring curiosity-driven, experiential learning into your school with role-based, school-connected access.</p>
+        <ul><li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>School-connected onboarding</li><li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Role-based permissions</li><li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Privacy-conscious by design</li></ul></div>
+      </article>
+      <article class="aud" data-reveal>
+        <span class="aud-num">02</span>
+        <div><h3>Teachers &amp; Mentors</h3><p>Communicate learning intent through multiple mediums and see how each student approaches an idea.</p>
+        <ul><li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>One intent, many experiences</li><li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Richer visibility into reasoning</li><li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>AI-assisted, not AI-replaced</li></ul></div>
+      </article>
+      <article class="aud" data-reveal>
+        <span class="aud-num">03</span>
+        <div><h3>Students</h3><p>Express curiosity in the way that feels natural — through Scribbles, Shelves and connected learning journeys.</p>
+        <ul><li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Write, draw, speak, create</li><li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Follow curiosity into experience</li><li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Learn from different perspectives</li></ul></div>
+      </article>
     </div>
   </div>
 </section>
@@ -379,36 +408,8 @@
 </section>
 END DISABLED: Why Mindow section -->
 
-<!-- ============================= SECTION 04 — WHAT IS MINDOW ============================= -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-head center">
-      <div class="eyebrow">What is Mindow?</div>
-      <h2 class="section-title section-title--compact">A new interface between<br><span class="grad-text">curiosity, expression and&nbsp;experience.</span></h2>
-      <p>Mindow brings together self-expression, AI-supported understanding, experiential learning and mentor–student interaction in one environment. Instead of forcing every learner into the same mode of expression, Mindow allows different minds to communicate in different ways.</p>
-    </div>
-    <div class="grid-3">
-      <div class="card pillar-card" data-reveal>
-        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 3v2M12 19v2M4 12H2M22 12h-2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="5"/></svg></div>
-        <h3>Curiosity</h3>
-        <p>Every learning journey on Mindow begins with what a student is genuinely curious to discover — not a fixed curriculum entry point.</p>
-      </div>
-      <div class="card pillar-card" data-reveal data-reveal-delay="2">
-        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Expression</h3>
-        <p>Thought becomes visible through text, drawing, voice, images and interactive Scribbles — whatever medium feels natural to the individual.</p>
-      </div>
-      <div class="card pillar-card" data-reveal data-reveal-delay="3">
-        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Experience</h3>
-        <p>Expressed intent becomes an actionable, experiential learning journey — connected from first thought to real-world application.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============================= SECTION 05 — THE MINDOW ECOSYSTEM (Intent → Scribble → Shelf → Intelligence → Xspace) ============================= -->
-<section class="section" id="ecosystem">
+<section class="section section-alt" id="ecosystem">
   <div class="container">
     <div class="section-head center">
       <div class="eyebrow">The Mindow ecosystem</div>
@@ -673,26 +674,6 @@ END DISABLED: Why Mindow section -->
 </section>
 
 
-<!-- ============================= SECTION 16 — SOCIAL WALL ============================= -->
-<section class="section section-alt" id="social-wall">
-  <div class="container">
-    <div class="section-head center">
-      <div class="eyebrow">Social Wall</div>
-      <h2 class="section-title">Different minds. Different expressions.<br>One learning environment.</h2>
-      <p>Mindow's Social Wall creates a controlled, school-connected environment where students can discover how other students think, create and approach ideas differently. It isn't designed around popularity or unrestricted social interaction — it is designed around learning from different perspectives.</p>
-    </div>
-    <div class="wall" data-reveal>
-      <div class="wall-card"><span class="wall-tag">Art</span><p>A watercolor study exploring how light bends through water — inspired by a science Scribble on refraction.</p><div class="wall-by">Grade 9 · Visual Arts</div></div>
-      <div class="wall-card"><span class="wall-tag">Experiment</span><p>Testing whether plants grow faster with music — three weeks of daily observation logs and a surprising result.</p><div class="wall-by">Grade 6 · Science</div></div>
-      <div class="wall-card"><span class="wall-tag">Idea</span><p>What if cities were designed around walking instead of driving? A short concept sketch and reasoning.</p><div class="wall-by">Grade 11 · Design</div></div>
-      <div class="wall-card"><span class="wall-tag">Story</span><p>A short story told entirely through voice notes recorded during a family road trip.</p><div class="wall-by">Grade 7 · Language</div></div>
-      <div class="wall-card"><span class="wall-tag">Project</span><p>A working model exploring how bridges distribute weight — built from recycled materials.</p><div class="wall-by">Grade 8 · Engineering Club</div></div>
-      <div class="wall-card"><span class="wall-tag">Unusual Solution</span><p>Solving a geometry problem using origami instead of algebra — and it worked.</p><div class="wall-by">Grade 10 · Mathematics</div></div>
-    </div>
-    <p class="key-message section-foot" data-reveal>"I didn't think about it that way."</p>
-  </div>
-</section>
-
 <!-- ============================= SECTION 17 — AI ============================= -->
 <section class="section">
   <div class="container">
@@ -873,7 +854,140 @@ END DISABLED: Experiential Learning section (#learning-loop) -->
 </section>
 END DISABLED: The bigger vision section -->
 
-<!-- ============================= SECTION 21 — FINAL CTA ============================= -->
+<!-- ============================= SECTION 02 — FACE TO MIND ============================= -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div data-reveal>
+        <div class="eyebrow">A future vision of digital identity</div>
+        <h2 class="section-title-sub">We move into the future by shifting from <span class="hl">how you look</span> to <span class="hl">how you think.</span></h2>
+        <p class="lede">For years, our digital identity has largely been represented by how we look. Our photographs became our digital identity. But as AI changes how we interact with technology, perhaps identity can evolve too.</p>
+        <p class="lede">Mindow explores a future where digital identity can represent more than a photograph — our curiosity, ideas, creations, interests, experiences and the way our thinking evolves.</p>
+        <p class="key-message">Not just how I look.<br>How I think, create, choose and experience.</p>
+      </div>
+      <div data-reveal data-reveal-delay="2">
+        <div class="evolve-flow">
+          <div class="evolve-step"><div class="evolve-dot">😊</div><div class="evolve-label"><b>Face</b><span>The old digital identity</span></div></div>
+          <div class="evolve-step"><div class="evolve-dot">✦</div><div class="evolve-label"><b>Interests</b><span>What you're drawn to</span></div></div>
+          <div class="evolve-step"><div class="evolve-dot">◈</div><div class="evolve-label"><b>Ideas</b><span>How your thinking moves</span></div></div>
+          <div class="evolve-step"><div class="evolve-dot">✎</div><div class="evolve-label"><b>Creations</b><span>What you make</span></div></div>
+          <div class="evolve-step"><div class="evolve-dot">◎</div><div class="evolve-label"><b>Experiences</b><span>What you've lived through</span></div></div>
+          <div class="evolve-step final"><div class="evolve-dot">→</div><div class="evolve-label"><b>Evolving Identity</b><span>The Mindow vision</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= SECTION 04 — WHAT IS MINDOW ============================= -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">What is Mindow?</div>
+      <h2 class="section-title section-title--compact">A new interface between<br><span class="grad-text">curiosity, expression and&nbsp;experience.</span></h2>
+      <p>Mindow brings together self-expression, AI-supported understanding, experiential learning and mentor–student interaction in one environment. Instead of forcing every learner into the same mode of expression, Mindow allows different minds to communicate in different ways.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card pillar-card" data-reveal>
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 3v2M12 19v2M4 12H2M22 12h-2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="5"/></svg></div>
+        <h3>Curiosity</h3>
+        <p>Every learning journey on Mindow begins with what a student is genuinely curious to discover — not a fixed curriculum entry point.</p>
+      </div>
+      <div class="card pillar-card" data-reveal data-reveal-delay="2">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Expression</h3>
+        <p>Thought becomes visible through text, drawing, voice, images and interactive Scribbles — whatever medium feels natural to the individual.</p>
+      </div>
+      <div class="card pillar-card" data-reveal data-reveal-delay="3">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Experience</h3>
+        <p>Expressed intent becomes an actionable, experiential learning journey — connected from first thought to real-world application.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= SECTION 16 — SOCIAL WALL ============================= -->
+<section class="section" id="social-wall">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">Social Wall</div>
+      <h2 class="section-title">Different minds. Different expressions.<br>One learning environment.</h2>
+      <p>Mindow's Social Wall creates a controlled, school-connected environment where students can discover how other students think, create and approach ideas differently. It isn't designed around popularity or unrestricted social interaction — it is designed around learning from different perspectives.</p>
+    </div>
+    <div class="wall" data-reveal>
+      <div class="wall-card"><span class="wall-tag">Art</span><p>A watercolor study exploring how light bends through water — inspired by a science Scribble on refraction.</p><div class="wall-by">Grade 9 · Visual Arts</div></div>
+      <div class="wall-card"><span class="wall-tag">Experiment</span><p>Testing whether plants grow faster with music — three weeks of daily observation logs and a surprising result.</p><div class="wall-by">Grade 6 · Science</div></div>
+      <div class="wall-card"><span class="wall-tag">Idea</span><p>What if cities were designed around walking instead of driving? A short concept sketch and reasoning.</p><div class="wall-by">Grade 11 · Design</div></div>
+      <div class="wall-card"><span class="wall-tag">Story</span><p>A short story told entirely through voice notes recorded during a family road trip.</p><div class="wall-by">Grade 7 · Language</div></div>
+      <div class="wall-card"><span class="wall-tag">Project</span><p>A working model exploring how bridges distribute weight — built from recycled materials.</p><div class="wall-by">Grade 8 · Engineering Club</div></div>
+      <div class="wall-card"><span class="wall-tag">Unusual Solution</span><p>Solving a geometry problem using origami instead of algebra — and it worked.</p><div class="wall-by">Grade 10 · Mathematics</div></div>
+    </div>
+    <p class="key-message section-foot" data-reveal>"I didn't think about it that way."</p>
+  </div>
+</section>
+
+<!-- ============================= SECTION — FAQ FOR SCHOOL LEADERS ============================= -->
+<section class="section section-alt" id="faq">
+  <div class="container two-col faq-grid">
+    <div class="faq-intro" data-reveal>
+      <div class="eyebrow">Questions</div>
+      <h2 class="section-title-sub">What school leaders ask us.</h2>
+      <p class="lede">Can't find your answer? <a href="#demo" class="text-link">Talk to Mindow</a>.</p>
+    </div>
+    <div class="faq" data-reveal>
+      <details open><summary>Is Mindow another LMS or student portfolio?<span aria-hidden="true"></span></summary><p>No. Mindow creates a new interface between learner, mentor, AI, expression and experience — where curiosity, self-expression and experiential learning become part of the everyday learning journey.</p></details>
+      <details><summary>Who uses Mindow in a school?<span aria-hidden="true"></span></summary><p>Administrators bring curiosity-driven, experiential learning into the school with role-based, school-connected access. Teachers and mentors communicate learning intent through multiple mediums and see how each student approaches an idea. Students express curiosity through Scribbles, Shelves and connected learning journeys.</p></details>
+      <details><summary>Is it safe for children?<span aria-hidden="true"></span></summary><p>Mindow is designed around a school-connected and controlled environment: school-connected access, role-based permissions, a moderated community, parental/guardian controls where applicable, privacy-conscious data practices, no targeted advertising and responsible AI principles.</p></details>
+      <details><summary>What does the AI do — and not do?<span aria-hidden="true"></span></summary><p>AI helps organise a Scribble, connect related ideas, suggest resources, identify expressed interests and help create and summarise. It does not diagnose personality, assign intelligence or decide a child's potential. AI assists understanding — it does not define the child.</p></details>
+      <details><summary>Is Mindow aligned with NEP?<span aria-hidden="true"></span></summary><p>Mindow is designed to support NEP-aligned experiential, holistic and competency-oriented learning.</p></details>
+      <details><summary>How do we get started?<span aria-hidden="true"></span></summary><p>Talk to our team about piloting Mindow with your mentors and students.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= SECTION — DEMO REQUEST ============================= -->
+<section class="section" id="demo">
+  <div class="container">
+    <div class="demo-card">
+      <div class="demo-copy" data-reveal>
+        <div class="eyebrow">For Schools</div>
+        <h2 class="section-title-sub">Bring Mindow to your school.</h2>
+        <p class="lede">Talk to our team about piloting Mindow with your mentors and students.</p>
+        <ul class="demo-points">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Built for the whole school community</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Designed around safety and responsible AI</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Supports NEP-aligned experiential learning</li>
+        </ul>
+      </div>
+      <div class="demo-form" data-reveal>
+        <form data-static-form>
+          <div class="form-row">
+            <div class="form-field"><label for="d-name">Name</label><input id="d-name" type="text" required placeholder="Your name" autocomplete="name"></div>
+            <div class="form-field"><label for="d-email">Email</label><input id="d-email" type="email" required placeholder="you@school.edu" autocomplete="email"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label for="d-school">School</label><input id="d-school" type="text" placeholder="School name" autocomplete="organization"></div>
+            <div class="form-field"><label for="d-role">I am a...</label>
+              <select id="d-role">
+                <option>School / Administrator</option>
+                <option>Educator / Mentor</option>
+                <option>Parent / Guardian</option>
+                <option>Partner / Collaborator</option>
+                <option>General Enquiry</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field"><label for="d-message">Message</label><textarea id="d-message" placeholder="Tell us a little about your school and what you're looking for..."></textarea></div>
+          <button type="submit" class="btn btn-primary btn-block">Talk to Mindow</button>
+        </form>
+        <div class="form-success">Thank you — your message has been received. The Mindow team will be in touch shortly.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISABLED: previous closing banner; replaced by the demo request section (delete this wrapper to restore)
 <section class="section">
   <div class="container">
     <div class="cta-band" data-reveal>
@@ -888,6 +1002,8 @@ END DISABLED: The bigger vision section -->
     </div>
   </div>
 </section>
+
+END DISABLED: closing banner -->
 
 </main>
 
@@ -948,6 +1064,6 @@ END DISABLED: The bigger vision section -->
   </div>
 </footer>
 
-<script src="js/main.js?v=6"></script>
+<script src="js/main.js?v=18"></script>
 </body>
 </html>

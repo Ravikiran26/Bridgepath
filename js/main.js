@@ -5,7 +5,7 @@
   /* ---------- theme toggle ---------- */
   var THEME_KEY = 'mindow-theme';
   function getTheme(){
-    try{ return localStorage.getItem(THEME_KEY) || 'dark'; }catch(e){ return 'dark'; }
+    try{ return localStorage.getItem(THEME_KEY) || 'light'; }catch(e){ return 'light'; }   // light by default for first-time visitors
   }
   function setTheme(theme){
     document.documentElement.setAttribute('data-theme', theme);
@@ -45,6 +45,73 @@
     });
   }
 
+  /* ---------- motion layer ---------- */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Hero headline: wrap each word so it can rise in one after another; underline the accent words
+  var heroTitle = document.querySelector('.hero--text h1');
+  if(heroTitle){
+    var n = 0, frag = document.createDocumentFragment();
+    function wordSpan(content){
+      var w = document.createElement('span'); w.className = 'w'; w.style.setProperty('--i', n++);
+      if(typeof content === 'string') w.textContent = content; else w.appendChild(content);
+      return w;
+    }
+    Array.prototype.slice.call(heroTitle.childNodes).forEach(function(node){
+      if(node.nodeType === 3){
+        node.textContent.split(/(\s+)/).forEach(function(part){
+          if(!part) return;
+          frag.appendChild(/^\s+$/.test(part) ? document.createTextNode(part) : wordSpan(part));
+        });
+      } else {
+        if(node.classList && node.classList.contains('hl')){
+          var swash = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          swash.setAttribute('class', 'hl-swash'); swash.setAttribute('viewBox', '0 0 100 12');
+          swash.setAttribute('preserveAspectRatio', 'none'); swash.setAttribute('aria-hidden', 'true');
+          swash.innerHTML = '<path pathLength="100" d="M2 8 C 22 3, 55 2, 98 5"/>';
+          node.appendChild(swash);
+        }
+        frag.appendChild(wordSpan(node));
+      }
+    });
+    heroTitle.textContent = ''; heroTitle.appendChild(frag);
+  }
+  // start the hero sequence once fonts are ready (no flash of fallback font), with a time limit
+  var heroSection = document.querySelector('.hero--text');
+  if(heroSection){
+    var started = false;
+    var go = function(){ if(!started){ started = true; heroSection.classList.add('go'); } };
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(go);
+    setTimeout(go, 900);
+  }
+
+  // Stagger: cards inside these groups appear one after another instead of all at once
+  ['.grid-3', '.wall', '.xs-cats', '.check-grid', '.evolve-flow', '.flow-strip', '.product-grid', '.audience-grid', '.shelf-grid'].forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(group){
+      group.removeAttribute('data-reveal');
+      Array.prototype.slice.call(group.children).forEach(function(child, i){
+        child.setAttribute('data-reveal', '');
+        child.style.transitionDelay = Math.min(i * 0.09, 0.6) + 's';
+      });
+    });
+  });
+  // Section headings unfold: label lines draw, then heading, then text
+  document.querySelectorAll('.section-head').forEach(function(head){ head.setAttribute('data-reveal', ''); });
+
+  // Thin reading-progress line under the header
+  if(header && !reduceMotion){
+    var bar = document.createElement('div'); bar.className = 'scroll-progress'; header.appendChild(bar);
+    var ticking = false;
+    document.addEventListener('scroll', function(){
+      if(ticking) return; ticking = true;
+      requestAnimationFrame(function(){
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ')';
+        ticking = false;
+      });
+    }, { passive:true });
+  }
+
   /* ---------- scroll reveal ---------- */
   var revealEls = document.querySelectorAll('[data-reveal]');
   if('IntersectionObserver' in window && revealEls.length){
@@ -52,6 +119,8 @@
       entries.forEach(function(entry){
         if(entry.isIntersecting){
           entry.target.classList.add('in');
+          // after the entrance, drop any stagger delay so hover effects respond instantly
+          (function(t){ setTimeout(function(){ t.style.transitionDelay = ''; }, 1700); })(entry.target);
           io.unobserve(entry.target);
         }
       });
@@ -91,9 +160,10 @@
   });
 
   /* ---------- generic loop diagram (circular nodes around a center) ---------- */
-  document.querySelectorAll('.loop-wrap').forEach(function(wrap){
+  document.querySelectorAll('.loop-wrap').forEach(function(wrap, w){
     var nodes = wrap.querySelectorAll('.loop-node');
     var n = nodes.length;
+    if(!n) return;
     nodes.forEach(function(node, i){
       var angle = (i / n) * Math.PI * 2 - Math.PI/2;
       var radius = 44;
@@ -102,6 +172,57 @@
       node.style.left = x + '%';
       node.style.top = y + '%';
     });
+
+    // Direction arrows: one per gap between nodes, drawn only through clear space
+    // (measured against the real label boxes, so long labels never get crossed).
+    var svg = wrap.querySelector('.loop-svg');
+    if(!svg) return;
+    svg.querySelectorAll('.arc').forEach(function(a){ a.style.display = 'none'; });
+    var NS = 'http://www.w3.org/2000/svg', id = 'loopArrAuto' + w;
+    var defs = svg.querySelector('defs') || svg.insertBefore(document.createElementNS(NS, 'defs'), svg.firstChild);
+    var marker = document.createElementNS(NS, 'marker');
+    marker.setAttribute('id', id); marker.setAttribute('markerWidth', '6'); marker.setAttribute('markerHeight', '6');
+    marker.setAttribute('refX', '4.5'); marker.setAttribute('refY', '3'); marker.setAttribute('orient', 'auto');
+    marker.innerHTML = '<path d="M1 1L4.8 3L1 5" fill="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>';
+    defs.appendChild(marker);
+    var center = wrap.querySelector('.loop-center');
+
+    function drawArrows(){
+      svg.querySelectorAll('.loop-arrow').forEach(function(p){ p.remove(); });
+      var box = wrap.getBoundingClientRect();
+      if(!box.width) return;
+      var k = box.width / 200;                                   // px per viewBox unit
+      var M = 8;                                                  // clearance around labels (px)
+      var rects = Array.prototype.map.call(nodes, function(nd){ return nd.getBoundingClientRect(); });
+      var cr = center ? center.getBoundingClientRect().width / 2 + 10 : 0;
+      var R = 68, C = 100, step = Math.PI * 2 / n, SAMPLES = 80;
+      function clear(a){
+        var x = box.left + (C + R * Math.cos(a)) * k, y = box.top + (C + R * Math.sin(a)) * k;
+        if(Math.hypot(x - (box.left + box.width/2), y - (box.top + box.height/2)) < cr) return false;
+        return !rects.some(function(r){ return x > r.left - M && x < r.right + M && y > r.top - M && y < r.bottom + M; });
+      }
+      for(var i = 0; i < n; i++){
+        var g0 = i * step - Math.PI/2, best = null, run = null;
+        for(var j = 0; j <= SAMPLES; j++){
+          var a = g0 + step * j / SAMPLES;
+          if(clear(a)){ if(!run) run = [a, a]; else run[1] = a; }
+          else if(run){ if(!best || run[1]-run[0] > best[1]-best[0]) best = run; run = null; }
+        }
+        if(run && (!best || run[1]-run[0] > best[1]-best[0])) best = run;
+        if(!best || best[1] - best[0] < 0.14) continue;          // too little room: skip this arrow
+        var a0 = best[0] + 0.04, a1 = best[1] - 0.06;
+        var path = document.createElementNS(NS, 'path');
+        path.setAttribute('class', 'loop-arrow');
+        path.setAttribute('d', 'M ' + (C + R*Math.cos(a0)).toFixed(2) + ' ' + (C + R*Math.sin(a0)).toFixed(2) +
+          ' A ' + R + ' ' + R + ' 0 0 1 ' + (C + R*Math.cos(a1)).toFixed(2) + ' ' + (C + R*Math.sin(a1)).toFixed(2));
+        path.setAttribute('marker-end', 'url(#' + id + ')');
+        path.style.setProperty('--d', (i * 0.12) + 's');
+        svg.appendChild(path);
+      }
+    }
+    drawArrows();
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(drawArrows);
+    var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(drawArrows, 150); });
   });
 
   /* ---------- Scribble builder demo ---------- */
