@@ -233,14 +233,132 @@
     var placeholder = canvas.querySelector('.placeholder');
     var banner = scribbleDemo.querySelector('.one-expression-banner');
 
-    var templates = {
-      text: '<div class="chip text">"Why do leaves change color in autumn?"</div>',
-      drawing: '<div class="chip drawing"><svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 32 C 14 6, 22 38, 32 20 S 50 4, 62 18"/></svg></div>',
-      image: '<div class="chip image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg> Leaf photo</div>',
-      voice: '<div class="chip voice"><div class="wave"><i style="animation-delay:0s;height:40%"></i><i style="animation-delay:.1s;height:80%"></i><i style="animation-delay:.2s;height:50%"></i><i style="animation-delay:.3s;height:90%"></i><i style="animation-delay:.4s;height:35%"></i><i style="animation-delay:.5s;height:70%"></i></div> Voice note</div>',
-      diagram: '<div class="chip diagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7l7-.5M8.5 8l3 8M15.5 8l-3 8"/></svg> Process map</div>',
-      media: '<div class="chip media"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg> Video clip</div>'
+    var ICON = {
+      text: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg>',
+      image: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>',
+      voice: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>',
+      diagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7l7-.5M8.5 8l3 8M15.5 8l-3 8"/></svg>',
+      media: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg>'
     };
+    function card(key, title, body, wide){
+      return '<div class="chip layer-card' + (wide ? ' wide' : '') + '"><div class="lc-head">' + ICON[key] + '<span>' + title + '</span></div>' + body + '</div>';
+    }
+    var templates = {
+      text: card('text', 'Text', '<textarea class="lc-text" rows="2" aria-label="Your thought">Why do leaves change color in autumn?</textarea>', true),
+      drawing: '<div class="chip drawing sketch-pad"><canvas aria-label="Drawing area"></canvas><span class="sketch-hint">✎ Draw here</span>' +
+               '<div class="sketch-tools"><button type="button" class="sketch-color active" data-color="#18151f" aria-label="Black ink"></button>' +
+               '<button type="button" class="sketch-color" data-color="#0a5549" aria-label="Green ink"></button>' +
+               '<button type="button" class="sketch-color" data-color="#c8734f" aria-label="Terracotta ink"></button>' +
+               '<button type="button" class="sketch-clear">Clear</button></div></div>',
+      image: card('image', 'Image', '<label class="lc-drop"><input type="file" accept="image/*" capture="environment"><span>Choose or take a photo</span></label><img class="lc-preview" alt="Your photo" hidden>'),
+      voice: card('voice', 'Voice', '<div class="lc-voice"><button type="button" class="lc-rec"><i></i><span>Record</span></button><span class="lc-time">0:00</span></div><audio class="lc-audio" controls hidden></audio><p class="lc-note" hidden></p>'),
+      diagram: card('diagram', 'Diagram', '<div class="lc-flow"><span class="lc-node" contenteditable="true">Sunlight</span><span class="lc-node" contenteditable="true">Chlorophyll fades</span><span class="lc-node" contenteditable="true">Colours appear</span><button type="button" class="lc-add">+ Step</button></div>', true),
+      media: card('media', 'Media', '<label class="lc-drop"><input type="file" accept="video/*"><span>Choose a video clip</span></label><video class="lc-preview" controls playsinline hidden></video>')
+    };
+
+    /* --- make each layer actually usable --- */
+    function initText(el){
+      var ta = el.querySelector('textarea');
+      function fit(){ ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; }
+      ta.addEventListener('input', fit); fit(); ta.focus(); ta.select();
+    }
+    function initFilePreview(el){
+      var input = el.querySelector('input[type=file]'), prev = el.querySelector('.lc-preview'), label = el.querySelector('.lc-drop span');
+      input.addEventListener('change', function(){
+        var f = input.files && input.files[0]; if(!f) return;
+        if(prev.src) URL.revokeObjectURL(prev.src);
+        prev.src = URL.createObjectURL(f); prev.hidden = false;      // stays in the browser, nothing is uploaded
+        label.textContent = 'Change';
+        el.classList.add('filled');
+      });
+    }
+    function initVoice(el){
+      var btn = el.querySelector('.lc-rec'), label = btn.querySelector('span'), time = el.querySelector('.lc-time');
+      var audio = el.querySelector('.lc-audio'), note = el.querySelector('.lc-note');
+      var rec = null, chunks = [], t0 = 0, tick = null;
+      function say(msg){ note.textContent = msg; note.hidden = false; }
+      if(!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder)){
+        btn.disabled = true; say('Voice recording needs a secure (https) page and a browser with microphone support.'); return;
+      }
+      btn.addEventListener('click', function(){
+        if(rec && rec.state === 'recording'){ rec.stop(); return; }
+        navigator.mediaDevices.getUserMedia({ audio:true }).then(function(stream){
+          chunks = []; rec = new MediaRecorder(stream);
+          rec.ondataavailable = function(e){ if(e.data.size) chunks.push(e.data); };
+          rec.onstop = function(){
+            stream.getTracks().forEach(function(t){ t.stop(); });
+            clearInterval(tick); el.classList.remove('recording'); label.textContent = 'Record again';
+            if(audio.src) URL.revokeObjectURL(audio.src);
+            audio.src = URL.createObjectURL(new Blob(chunks, { type: rec.mimeType || 'audio/webm' })); audio.hidden = false;
+          };
+          rec.start(); t0 = Date.now(); el.classList.add('recording'); label.textContent = 'Stop'; note.hidden = true;
+          tick = setInterval(function(){
+            var s = Math.floor((Date.now() - t0) / 1000);
+            time.textContent = Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2);
+            if(s >= 60) rec.stop();                                   // keep demo clips short
+          }, 250);
+        }).catch(function(){ say('Microphone access was blocked. Allow it in the browser to record.'); });
+      });
+    }
+    function initDiagram(el){
+      var flow = el.querySelector('.lc-flow'), add = el.querySelector('.lc-add');
+      add.addEventListener('click', function(){
+        if(flow.querySelectorAll('.lc-node').length >= 6) return;
+        var n = document.createElement('span'); n.className = 'lc-node'; n.contentEditable = 'true'; n.textContent = 'New step';
+        flow.insertBefore(n, add); n.focus();
+        var r = document.createRange(); r.selectNodeContents(n); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      });
+    }
+    var INIT = { text: initText, image: initFilePreview, media: initFilePreview, voice: initVoice, diagram: initDiagram };
+
+    // Real drawing pad for the Drawing layer (mouse, pen and touch)
+    function initSketchPad(pad){
+      var cv = pad.querySelector('canvas'), ctx = cv.getContext('2d');
+      var hint = pad.querySelector('.sketch-hint');
+      var color = '#18151f', drawing = false, last = null;
+      function size(){
+        // layout size (unaffected by the pop-in scale animation)
+        var r = { width: cv.offsetWidth, height: cv.offsetHeight }, dpr = window.devicePixelRatio || 1;
+        if(!r.width) return;
+        var keep = document.createElement('canvas'); keep.width = cv.width; keep.height = cv.height;
+        if(cv.width) keep.getContext('2d').drawImage(cv, 0, 0);
+        cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        if(keep.width) ctx.drawImage(keep, 0, 0, cv.width, cv.height);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 3;
+      }
+      function pos(e){
+        var r = cv.getBoundingClientRect(), sx = cv.offsetWidth / r.width, sy = cv.offsetHeight / r.height;   // undo any CSS scale
+        return { x: (e.clientX - r.left) * sx, y: (e.clientY - r.top) * sy };
+      }
+      cv.addEventListener('pointerdown', function(e){
+        drawing = true; last = pos(e); cv.setPointerCapture(e.pointerId);
+        pad.classList.add('drawn');
+        ctx.strokeStyle = color; ctx.beginPath(); ctx.arc(last.x, last.y, 1.2, 0, Math.PI * 2); ctx.stroke();
+        e.preventDefault();
+      });
+      cv.addEventListener('pointermove', function(e){
+        if(!drawing) return;
+        var p = pos(e);
+        ctx.strokeStyle = color; ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+        last = p; e.preventDefault();
+      });
+      ['pointerup', 'pointercancel', 'pointerleave'].forEach(function(ev){ cv.addEventListener(ev, function(){ drawing = false; }); });
+      pad.querySelectorAll('.sketch-color').forEach(function(b){
+        b.style.background = b.getAttribute('data-color');
+        b.addEventListener('click', function(){
+          color = b.getAttribute('data-color');
+          pad.querySelectorAll('.sketch-color').forEach(function(x){ x.classList.toggle('active', x === b); });
+        });
+      });
+      pad.querySelector('.sketch-clear').addEventListener('click', function(){
+        ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height); ctx.restore();
+        pad.classList.remove('drawn');
+      });
+      size();   // element is already in the DOM, so it can be measured right away
+      var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(size, 150); });
+    }
 
     function refreshBanner(){
       var active = scribbleDemo.querySelectorAll('.layer-toggle.active').length;
@@ -261,6 +379,8 @@
           var el = wrap.firstElementChild;
           el.setAttribute('data-chip', key);
           canvas.insertBefore(el, banner);
+          if(key === 'drawing') initSketchPad(el);
+          else if(INIT[key]) INIT[key](el);
           btn.classList.add('active');
         }
         refreshBanner();
@@ -345,6 +465,41 @@
     eco.addEventListener('mouseleave', restart);
     activate(0, false);
     restart();
+  });
+
+  /* ---------- Face → Mind: build-your-identity (tap dimensions to add them) ---------- */
+  document.querySelectorAll('.fm-card').forEach(function(card){
+    var tiles = card.querySelectorAll('.fm-tile');
+    var list = card.querySelector('.fm-entries');
+    var count = card.querySelector('.fm-count');
+    var meter = card.querySelector('.fm-meter span');
+    if(!tiles.length || !list) return;
+    function render(){
+      var chosen = Array.prototype.filter.call(tiles, function(t){ return t.getAttribute('aria-pressed') === 'true'; });
+      list.innerHTML = '';
+      chosen.forEach(function(t){
+        var li = document.createElement('li');
+        li.appendChild(t.querySelector('svg').cloneNode(true));
+        var text = document.createElement('span');
+        var label = document.createElement('b'); label.textContent = t.querySelector('span').textContent;
+        var ex = document.createElement('em'); ex.textContent = t.getAttribute('data-example');
+        text.appendChild(label); text.appendChild(ex); li.appendChild(text);
+        list.appendChild(li);
+      });
+      card.classList.toggle('has-entries', chosen.length > 0);
+      list.scrollTop = list.scrollHeight;   // keep the newest entry in view
+      if(count) count.textContent = chosen.length + ' of ' + tiles.length + ' added';
+      if(meter) meter.style.transform = 'scaleX(' + (chosen.length / tiles.length) + ')';
+    }
+    tiles.forEach(function(t){
+      t.addEventListener('click', function(){
+        t.setAttribute('aria-pressed', t.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+        render();
+      });
+    });
+    // start with two dimensions chosen so the idea is visible at a glance
+    [0, 2].forEach(function(i){ if(tiles[i]) tiles[i].setAttribute('aria-pressed', 'true'); });
+    render();
   });
 
   /* ---------- Intent Interactive Scribble timeline ---------- */
