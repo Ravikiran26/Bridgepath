@@ -112,6 +112,39 @@
     }, { passive:true });
   }
 
+  /* ---------- keyword ribbon: JS-driven so it moves reliably on every phone browser ---------- */
+  document.querySelectorAll('.marquee-track').forEach(function(track){
+    if(reduceMotion) return;                       // respect "Reduce Motion": the ribbon stays swipeable instead
+    var ribbon = track.parentElement;
+    track.style.animation = 'none';                // take over from the CSS animation
+    var x = 0, last = 0, loop = 0, visible = true, hovering = false;
+    var SPEED = 0.045;                             // px per ms (~45px/s)
+    function measure(){
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      loop = (track.scrollWidth + gap) / 2;        // the words are listed twice; one set = one loop
+    }
+    measure();
+    window.addEventListener('resize', measure);
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ visible = es[0].isIntersecting; }).observe(ribbon);
+    }
+    if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+      ribbon.addEventListener('mouseenter', function(){ hovering = true; });
+      ribbon.addEventListener('mouseleave', function(){ hovering = false; });
+    }
+    function frame(t){
+      var dt = last ? Math.min(t - last, 64) : 0; last = t;
+      if(visible && !hovering && loop){
+        x -= dt * SPEED;
+        if(-x >= loop) x += loop;
+        track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  });
+
   /* ---------- scroll reveal ---------- */
   var revealEls = document.querySelectorAll('[data-reveal]');
   if('IntersectionObserver' in window && revealEls.length){
