@@ -6,7 +6,7 @@
 <title>How It Works — Mindow</title>
 <meta name="description" content="Scribble, Shelf, the Intent Interface, the Intent Interactive Scribble, Scribble Chain, Experiential Learning, Mentor↔Student and AI understanding — how Mindow works, end to end.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%230a0a0e'/%3E%3Cpath d='M16 5v22M8 10c4 3 4 9 0 12M24 10c-4 3-4 9 0 12' stroke='%238b7cff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="css/style.css?v=28">
+<link rel="stylesheet" href="css/style.css?v=43">
 <script>(function(){try{var t=localStorage.getItem('mindow-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
 </head>
 <body>
@@ -70,6 +70,7 @@
         </div>
       </div>
       <div class="nav-item"><a href="insights.html" class="nav-link">Insights</a></div>
+      <div class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></div>
     </nav>
     <div class="nav-right">
       <button class="theme-toggle" aria-label="Toggle light and dark theme" type="button">
@@ -118,6 +119,7 @@
     <li><a href="about.html#contact">Contact</a></li>
   </ul></details>
   <a href="insights.html" style="font-family:'Fraunces',serif;font-size:19px;display:block;padding:16px 0;border-bottom:1px solid var(--border-soft);">Insights</a>
+  <a href="faq.html" style="font-family:'Fraunces',serif;font-size:19px;display:block;padding:16px 0;border-bottom:1px solid var(--border-soft);">FAQ</a>
   <div class="mobile-cta">
     <a href="index.html#demo" class="btn btn-primary">Talk to Mindow</a>
     <a href="explore-mindow.html" class="btn btn-ghost">Experience Mindow</a>
@@ -144,6 +146,181 @@
       </div>
       <p class="lede" data-reveal data-reveal-delay="1">A Scribble is more than a drawing or a note. It is an expressive space where thoughts, questions, drawings, words, images, voice, references, ideas and creations can come together — letting a person express an idea in the way that feels natural to them.</p>
     </div>
+    <!-- Scribble app: an "Atomic Habits" Scribble you can keep adding to -->
+    <div class="sboard sboard--app" data-reveal>
+      <div class="sb-appbar">
+        <span class="sb-brand"><span class="sb-logo" aria-hidden="true"></span><b>Mindow</b><i>Scribble</i></span>
+        <span class="sb-select" aria-label="Current Scribble"><span class="sb-select-thumb" aria-hidden="true"></span>Atomic Habits<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+        <span class="sb-kebab" aria-hidden="true">⋮</span>
+      </div>
+
+      <div class="sb-body">
+        <div class="sb-page sb-paper">
+          <canvas class="sb-ink" aria-label="Scribble page — draw with the pen tool"></canvas>
+          <div class="sb-items">
+
+            <div class="sb-item sb-book" data-type="photo" style="--x:2.5%;--y:3%;--w:15%;--rot:-3deg">
+              <div class="sb-cover"><b>Atomic<br>Habits</b><small>Tiny Changes,<br>Remarkable Results</small><span>JAMES CLEAR</span></div>
+            </div>
+
+            <div class="sb-item sb-title" data-type="text" style="--x:21%;--y:2%;--w:36%">
+              <div class="sb-text big" contenteditable="true" spellcheck="false">Atomic Habits</div>
+            </div>
+
+            <div class="sb-item sb-quote" data-type="text" style="--x:21%;--y:13%;--w:33%">
+              <div class="sb-text" contenteditable="true" spellcheck="false">“Small things compounded, <mark>changed my life.</mark>”</div>
+            </div>
+
+            <div class="sb-item sb-pic sb-sunset" data-type="photo" style="--x:57%;--y:4%;--w:22%;--rot:3deg">
+              <svg viewBox="0 0 220 150" preserveAspectRatio="xMidYMid slice" aria-label="Photo: person watching a sunset over mountains">
+                <defs><linearGradient id="sbSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b4a7a"/><stop offset=".55" stop-color="#e9906a"/><stop offset="1" stop-color="#f7c983"/></linearGradient></defs>
+                <rect width="220" height="150" fill="url(#sbSky)"/>
+                <circle cx="120" cy="92" r="16" fill="#fde7b0"/>
+                <path d="M0 100 L40 78 L70 92 L110 70 L150 90 L190 72 L220 86 V150 H0 Z" fill="#8a5a6a" opacity=".75"/>
+                <path d="M0 116 L50 98 L90 110 L130 96 L170 112 L220 100 V150 H0 Z" fill="#4e3a52"/>
+                <path d="M120 150 L140 118 L196 112 L220 124 V150 Z" fill="#2a2030"/>
+                <g fill="#1a1420"><circle cx="168" cy="98" r="4"/><path d="M162 104 Q168 100 174 104 L176 116 L160 116 Z"/><path d="M158 116 L182 116 L186 120 L154 120 Z"/></g>
+              </svg>
+            </div>
+
+            <div class="sb-item sb-note sb-consistency" data-type="text" style="--x:81.5%;--y:3%;--w:16%">
+              <svg class="sb-sun" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="6"/><path d="M20 4v6M20 30v6M4 20h6M30 20h6M8.5 8.5l4 4M27.5 27.5l4 4M8.5 31.5l4-4M27.5 12.5l4-4"/></svg>
+              <div class="sb-text" contenteditable="true" spellcheck="false">Consistency today, better me tomorrow</div>
+            </div>
+
+            <div class="sb-item sb-sticky sb-green" data-type="text" style="--x:2.5%;--y:37%;--w:16%;--rot:-2deg">
+              <div class="sb-text" contenteditable="true" spellcheck="false">One of the books that made me change my daily life in small things which compounded and made a big difference.</div>
+            </div>
+
+            <div class="sb-item sb-stairs" data-type="diagram" style="--x:21%;--y:31%;--w:34%">
+              <svg viewBox="0 0 340 190" aria-label="Small change to discipline to consistency to big difference">
+                <g class="sb-step-lines" fill="none" stroke="#3a3a42" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5">
+                  <path d="M10 150 H80 V120 H160 V90 H240 V60 H330"/>
+                </g>
+                <g class="sb-plants">
+                  <g transform="translate(40 150)"><path d="M0 0 V-12" stroke="#4f8a3a" stroke-width="2.5"/><path d="M0 -10 C -8 -16 -12 -14 -12 -10 C -6 -8 -2 -9 0 -10 Z M0 -10 C 8 -16 12 -14 12 -10 C 6 -8 2 -9 0 -10 Z" fill="#6fae4f"/></g>
+                  <g transform="translate(120 120)"><path d="M0 0 V-22" stroke="#4f8a3a" stroke-width="2.5"/><path d="M0 -16 C -12 -24 -18 -20 -18 -14 C -10 -12 -4 -13 0 -16 Z M0 -20 C 12 -28 18 -24 18 -18 C 10 -16 4 -17 0 -20 Z" fill="#6fae4f"/></g>
+                  <g transform="translate(200 90)"><path d="M0 0 V-32" stroke="#4f8a3a" stroke-width="3"/><path d="M0 -20 C -14 -30 -22 -26 -22 -18 C -12 -16 -5 -17 0 -20 Z M0 -28 C 14 -38 22 -34 22 -26 C 12 -24 5 -25 0 -28 Z M0 -32 C -6 -42 -2 -48 2 -48 C 4 -42 3 -36 0 -32 Z" fill="#6fae4f"/></g>
+                  <g transform="translate(285 60)"><path d="M0 0 V-44" stroke="#3f7a2c" stroke-width="3.5"/><path d="M0 -22 C -18 -34 -28 -30 -28 -20 C -16 -18 -6 -19 0 -22 Z M0 -32 C 18 -44 28 -40 28 -30 C 16 -28 6 -29 0 -32 Z M0 -40 C -16 -52 -24 -48 -24 -40 C -14 -38 -6 -38 0 -40 Z M0 -44 C 8 -56 4 -62 -1 -62 C -3 -54 -2 -48 0 -44 Z" fill="#5c9e3e"/></g>
+                </g>
+                <path class="sb-grow" d="M60 128 C 90 100, 120 104, 150 80 S 220 52, 250 34" fill="none" stroke="#2f9a72" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M244 30 L254 32 L248 41" fill="none" stroke="#2f9a72" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <g class="sb-hand-labels"><text x="14" y="172">Small Change</text><text x="104" y="142">Discipline</text><text x="184" y="112">Consistency</text><text x="262" y="82">Big Difference</text><text x="244" y="18" class="sb-hl-green">1% better every day</text></g>
+              </svg>
+            </div>
+
+            <div class="sb-item sb-sticky sb-yellow" data-type="text" style="--x:58%;--y:38%;--w:18%;--rot:2deg">
+              <span class="sb-bulb" aria-hidden="true">💡</span>
+              <div class="sb-text" contenteditable="true" spellcheck="false">Discipline and attention to minute details.</div>
+            </div>
+
+            <div class="sb-item sb-sticky sb-pink" data-type="text" style="--x:81%;--y:24%;--w:17%;--rot:2.5deg">
+              <div class="sb-text" contenteditable="true" spellcheck="false">Never focused on things which actually matter… when I started following it like Atomic Habits said… I changed my life.</div>
+            </div>
+
+            <div class="sb-item sb-note sb-small" data-type="text" style="--x:22%;--y:67%;--w:31%">
+              <div class="sb-text" contenteditable="true" spellcheck="false">It's not about big changes. It's about doing the right <mark>small things repeatedly.</mark></div>
+            </div>
+
+            <div class="sb-item sb-explore" data-type="link" style="--x:57%;--y:67%;--w:21%">
+              <div class="sb-explore-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Explore further…</div>
+              <div class="sb-text" contenteditable="true" spellcheck="false">I want to explore this further.</div>
+            </div>
+
+            <div class="sb-item sb-pic sb-desk" data-type="photo" style="--x:2.5%;--y:66%;--w:17%;--rot:-2deg">
+              <svg viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice" aria-label="Photo: coffee mug and books on a desk">
+                <defs><linearGradient id="sbRoom" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9dcc4"/><stop offset="1" stop-color="#b79c78"/></linearGradient></defs>
+                <rect width="200" height="150" fill="url(#sbRoom)"/>
+                <rect x="120" y="0" width="80" height="80" fill="#f6ecd8" opacity=".7"/><path d="M160 0 V80 M120 40 H200" stroke="#cdb894" stroke-width="3"/>
+                <rect y="104" width="200" height="46" fill="#5a3f2c"/>
+                <rect x="20" y="88" width="56" height="10" fill="#7a5a3a"/><rect x="24" y="78" width="50" height="10" fill="#a8462f"/><rect x="18" y="96" width="62" height="9" fill="#2f4a5a"/>
+                <path d="M110 76 H146 V102 Q146 108 140 108 H116 Q110 108 110 102 Z" fill="#1e1c1f"/><path d="M146 82 Q158 84 156 94 Q154 100 146 100" fill="none" stroke="#1e1c1f" stroke-width="4"/>
+                <path class="sb-steam" d="M120 70 C 116 62 124 58 120 50 M132 70 C 128 62 136 58 132 50" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+                <g fill="#4f8a3a"><path d="M178 104 C 170 90 172 80 180 74 C 186 84 186 94 178 104 Z"/><path d="M182 104 C 190 92 196 88 198 80 C 188 82 182 92 182 104 Z"/></g>
+              </svg>
+              <span class="sb-overlay-hand">Better choices daily</span>
+            </div>
+
+            <div class="sb-item sb-ai" data-type="ai" style="--x:80%;--y:58%;--w:19%">
+              <div class="sb-ai-head"><span aria-hidden="true">✦</span>Mindow Suggestions</div>
+              <button type="button" class="sb-suggest" data-q="What actually matters to me?"><span aria-hidden="true">🎯</span>What actually matters to me?</button>
+              <button type="button" class="sb-suggest" data-q="Which small actions create the biggest change?"><span aria-hidden="true">📈</span>Which small actions create the biggest change?</button>
+              <button type="button" class="sb-suggest" data-q="Where am I losing attention?"><span aria-hidden="true">👁</span>Where am I losing attention?</button>
+              <button type="button" class="sb-suggest" data-q="What could I compound over the next year?"><span aria-hidden="true">🗓</span>What could I compound over the next year?</button>
+            </div>
+
+            <!-- hand-drawn connectors (desktop layout only) -->
+            <svg class="sb-deco" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M10 33 C 11 35, 11 36, 10.5 37"/>
+              <path d="M49 6 C 52 5, 54 5, 56 7"/>
+              <path d="M18 47 C 19.5 47, 20.5 46, 21 45"/>
+              <path d="M54 64 C 55 66, 56 67, 57 68"/>
+            </svg>
+          </div>
+          <p class="sb-tip"></p>
+        </div>
+
+        <div class="sb-rail" role="toolbar" aria-label="Scribble tools">
+        <button type="button" class="sb-tool active" data-tool="pen" aria-pressed="true" title="Pen" aria-label="Pen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg></button>
+        <button type="button" class="sb-tool" data-tool="text" aria-pressed="false" title="Text" aria-label="Text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h12v2M10 5v14M7 19h6M15 12h6M18 12v7M16.5 19h3"/></svg></button>
+        <button type="button" class="sb-tool" data-tool="photo" aria-pressed="false" title="Image" aria-label="Image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5-8 8"/></svg></button>
+        <button type="button" class="sb-tool" data-tool="link" aria-pressed="false" title="Link" aria-label="Link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg></button>
+        <button type="button" class="sb-tool" data-tool="voice" aria-pressed="false" title="Voice" aria-label="Voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg></button>
+        <button type="button" class="sb-tool" data-tool="diagram" aria-pressed="false" title="Diagram" aria-label="Diagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><circle cx="17.5" cy="17.5" r="3.5"/></svg></button>
+        <span class="sb-rail-sep" aria-hidden="true"></span>
+        <button type="button" class="sb-color active" data-color="#18151f" aria-label="Black ink"></button>
+        <button type="button" class="sb-color" data-color="#0a5549" aria-label="Green ink"></button>
+        <button type="button" class="sb-color" data-color="#c8734f" aria-label="Terracotta ink"></button>
+        <span class="sb-rail-sep" aria-hidden="true"></span>
+        <button type="button" class="sb-clear" title="Clear page" aria-label="Clear page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></button>
+        <button type="button" class="sb-restore" title="Show the example again" aria-label="Show the example again"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 12a8 8 0 108-8H8M8 4L5 7l3 3"/></svg></button>
+      </div>
+      </div>
+
+      <div class="sb-foot">
+        <span>= <strong>ONE EXPRESSION.</strong> One expression can contain many forms.</span>
+        <span class="sb-count"></span>
+      </div>
+      <input type="file" class="sb-file-photo" accept="image/*" hidden>
+    </div>
+
+    <!-- DISABLED: previous single-page Scribble board (leaves example); replaced by the Atomic Habits Scribble app above
+    <!~~ One Scribble: everything on a single page (pen, text, photo, voice, diagram, video) ~~>
+    <div class="sboard" data-reveal>
+      <div class="sb-toolbar" role="toolbar" aria-label="Scribble tools">
+        <div class="sb-tools">
+          <button type="button" class="sb-tool active" data-tool="pen" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg><span>Pen</span></button>
+          <button type="button" class="sb-tool" data-tool="text" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M12 6v14M8 20h8"/></svg><span>Text</span></button>
+          <button type="button" class="sb-tool" data-tool="photo" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5-8 8"/></svg><span>Photo</span></button>
+          <button type="button" class="sb-tool" data-tool="voice" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg><span>Voice</span></button>
+          <button type="button" class="sb-tool" data-tool="diagram" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7l7-.5M8.5 8l3 8M15.5 8l-3 8"/></svg><span>Diagram</span></button>
+          <button type="button" class="sb-tool" data-tool="video" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg><span>Video</span></button>
+        </div>
+        <div class="sb-side">
+          <span class="sb-colors" role="group" aria-label="Ink colour">
+            <button type="button" class="sb-color active" data-color="#18151f" aria-label="Black ink"></button>
+            <button type="button" class="sb-color" data-color="#0a5549" aria-label="Green ink"></button>
+            <button type="button" class="sb-color" data-color="#c8734f" aria-label="Terracotta ink"></button>
+          </span>
+          <button type="button" class="sb-clear">Clear</button>
+        </div>
+      </div>
+      <div class="sb-page">
+        <canvas class="sb-ink" aria-label="Scribble page"></canvas>
+        <div class="sb-items"></div>
+        <p class="sb-tip"></p>
+      </div>
+      <div class="sb-foot">
+        <span>= <strong>ONE EXPRESSION.</strong> One expression can contain many forms.</span>
+        <span class="sb-count"></span>
+      </div>
+      <input type="file" class="sb-file-photo" accept="image/*" hidden>
+      <input type="file" class="sb-file-video" accept="video/*" hidden>
+    </div>
+
+    END DISABLED: leaves Scribble board -->
+
+    <!-- DISABLED: previous layer-by-layer Scribble builder; replaced by the single-page Scribble above (delete this wrapper to restore)
     <div class="scribble-demo" data-reveal>
       <div class="scribble-controls">
         <p class="hint">Tap layers to build one Scribble</p>
@@ -159,6 +336,7 @@
         <div class="one-expression-banner">= <strong style="color:var(--text)">ONE EXPRESSION.</strong> One expression can contain many forms.</div>
       </div>
     </div>
+    END DISABLED: layer builder -->
   </div>
 </section>
 
@@ -363,6 +541,7 @@ END DISABLED: Scribble Chain section (#scribble-chain) -->
         <li><a href="about.html">About Mindow</a></li>
         <li><a href="about.html#vision">Vision</a></li>
         <li><a href="insights.html">Insights</a></li>
+        <li><a href="faq.html">FAQ</a></li>
         <li><a href="about.html#contact">Contact</a></li>
       </ul></div>
       <div class="footer-col"><h5>Legal</h5><ul>
@@ -380,6 +559,7 @@ END DISABLED: Scribble Chain section (#scribble-chain) -->
   </div>
 </footer>
 
-<script src="js/main.js?v=29"></script>
+<script src="js/main.js?v=42"></script>
+<script src="js/scribble-board.js?v=6"></script>
 </body>
 </html>

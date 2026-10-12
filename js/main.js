@@ -86,7 +86,7 @@
   }
 
   // Stagger: cards inside these groups appear one after another instead of all at once
-  ['.grid-3', '.wall', '.xs-cats', '.check-grid', '.evolve-flow', '.flow-strip', '.product-grid', '.audience-grid', '.shelf-grid'].forEach(function(sel){
+  ['.grid-3', '.wall', '.sw-grid', '.xs-cats', '.check-grid', '.evolve-flow', '.flow-strip', '.product-grid', '.audience-grid', '.shelf-grid'].forEach(function(sel){
     document.querySelectorAll(sel).forEach(function(group){
       group.removeAttribute('data-reveal');
       Array.prototype.slice.call(group.children).forEach(function(child, i){
@@ -451,16 +451,19 @@
       step.addEventListener('click', function(){ idx = i; activate(idx); restart(); });
     });
     var timer;
+    // each demo panel can ask for more time (data-hold, ms) — e.g. the day-by-day experiment
+    function holdFor(i){ var h = panels[i] && parseInt(panels[i].getAttribute('data-hold'), 10); return h || (demo ? 4200 : 2200); }
     function restart(){
-      clearInterval(timer);
-      timer = setInterval(function(){
+      clearTimeout(timer);
+      timer = setTimeout(function next(){
         idx = (idx + 1) % steps.length;
         activate(idx);
-      }, demo ? 4200 : 2200);   // slower when the demo needs time to play
+        timer = setTimeout(next, holdFor(idx));
+      }, holdFor(idx));
     }
     if(demo){
       // pause auto-cycling while someone is looking at the demo
-      demo.addEventListener('mouseenter', function(){ clearInterval(timer); });
+      demo.addEventListener('mouseenter', function(){ clearTimeout(timer); });
       demo.addEventListener('mouseleave', restart);
     }
     activate(0);
@@ -498,6 +501,88 @@
     eco.addEventListener('mouseleave', restart);
     activate(0, false);
     restart();
+  });
+
+  /* ---------- Social Wall filters: highlight one form of expression ---------- */
+  document.querySelectorAll('[data-sw]').forEach(function(sw){
+    var chips = sw.querySelectorAll('.sw-filters button');
+    var tiles = sw.querySelectorAll('.sw-tile');
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        var kind = chip.getAttribute('data-kind');
+        chips.forEach(function(c){ c.classList.toggle('on', c === chip); });
+        if(kind === 'all'){ sw.removeAttribute('data-filter'); }
+        else { sw.setAttribute('data-filter', kind); }
+        tiles.forEach(function(t){
+          var match = kind === 'all' || t.getAttribute('data-kind') === kind;
+          t.classList.toggle('is-out', !match);
+          t.classList.toggle('is-in', match && kind !== 'all');
+          t.style.transitionDelay = '0s';
+        });
+        // on phones, bring the chosen tile into view
+        var hit = kind !== 'all' && sw.querySelector('.sw-tile[data-kind="' + kind + '"]');
+        var grid = sw.querySelector('.sw-grid');
+        if(hit && grid.scrollWidth > grid.clientWidth) grid.scrollTo({ left: hit.offsetLeft - grid.offsetLeft - 16, behavior:'smooth' });
+      });
+    });
+  });
+
+  /* ---------- Your Mindow Identity: traits light up the Shelf + Scribble items behind them ---------- */
+  document.querySelectorAll('.idp').forEach(function(idp){
+    var traits = idp.querySelectorAll('[data-trait]');
+    var items  = idp.querySelectorAll('[data-traits]');
+    var why    = idp.querySelector('.idp-why');
+    var defaultWhy = why ? why.textContent : '';
+    var cycle = null, resumeAt = 0, idx = -1, inView = false;
+
+    function show(trait){
+      idp.setAttribute('data-active', trait || '');
+      if(!trait) idp.removeAttribute('data-active');
+      traits.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-trait') === trait ? 'true' : 'false'); });
+      items.forEach(function(li){
+        var on = trait && (' ' + li.getAttribute('data-traits') + ' ').indexOf(' ' + trait + ' ') > -1;
+        li.classList.toggle('lit', !!on);
+      });
+      if(why){
+        var b = trait && idp.querySelector('[data-trait="' + trait + '"]');
+        why.innerHTML = b ? '<b>' + b.textContent + '</b> — ' + b.getAttribute('data-why') : defaultWhy;
+      }
+    }
+    function pauseAuto(){ resumeAt = Date.now() + 8000; }
+
+    traits.forEach(function(b, i){
+      b.addEventListener('mouseenter', function(){ pauseAuto(); idx = i; show(b.getAttribute('data-trait')); });
+      b.addEventListener('focus',      function(){ pauseAuto(); idx = i; show(b.getAttribute('data-trait')); });
+      b.addEventListener('click',      function(){ pauseAuto(); idx = i; show(b.getAttribute('data-trait')); });
+    });
+    // items also explain themselves: hovering an item highlights its traits
+    items.forEach(function(li){
+      li.addEventListener('mouseenter', function(){
+        pauseAuto();
+        var t = li.getAttribute('data-traits').split(' ');
+        traits.forEach(function(b){ b.classList.toggle('hint', t.indexOf(b.getAttribute('data-trait')) > -1); });
+      });
+      li.addEventListener('mouseleave', function(){ traits.forEach(function(b){ b.classList.remove('hint'); }); });
+    });
+
+    // gentle auto-tour while nobody is interacting (only when visible)
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ inView = es[0].isIntersecting; }, { threshold:0.35 }).observe(idp);
+    }
+    function startTour(){
+      if(cycle || reduceMotion) return;
+      cycle = setInterval(function(){
+        if(!inView || Date.now() < resumeAt) return;
+        idx = (idx + 1) % traits.length;
+        show(traits[idx].getAttribute('data-trait'));
+      }, 3200);
+    }
+    // once the entrance animation has played, switch to snappy hover transitions and start the tour
+    var ready = function(){ idp.classList.add('idp-ready'); startTour(); };
+    if(idp.classList.contains('in')) setTimeout(ready, 2200);
+    else new MutationObserver(function(m, obs){
+      if(idp.classList.contains('in')){ obs.disconnect(); setTimeout(ready, 2200); }
+    }).observe(idp, { attributes:true, attributeFilter:['class'] });
   });
 
   /* ---------- Face → Mind: build-your-identity (tap dimensions to add them) ---------- */
